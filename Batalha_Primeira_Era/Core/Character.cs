@@ -3,6 +3,7 @@ using Batalha_Primeira_Era.Items.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 
 namespace Batalha_Primeira_Era.Core
@@ -195,7 +196,13 @@ namespace Batalha_Primeira_Era.Core
             //Adiciona um multiplicador com base em qual parte do corpo for atingida
             float multiplier = GetDamageMultiplier(hitPart);
             //Aplica a "Redução de Dano", a armadura do personagem anula o dano na proporção de 50% do valor de armadura
-            float damageAfterDefense = (damage * multiplier) - (this.Armor / 2);
+            float rawDamage = damage * multiplier;
+
+            float armorConstant = 100f;
+
+            float damageFactor = armorConstant / (armorConstant + (this.Armor/ 2));
+
+            float damageAfterDefense = rawDamage * damageFactor;
 
             //Garante que o dano nunca seja negativo, sem isso, se a sua armadura fosse muito alta, você seria curado ao levar um golpe
             if (damageAfterDefense < 0) damageAfterDefense = 0;
