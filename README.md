@@ -18,7 +18,7 @@ The class encapsulates the character's core state data and gameplay statistics. 
 
     V.TakeAction (Method): Executes the offensive action workflow, including target selection, hit location determination, damage computation, and weapon durability validation. The method also applies degradation penalties that may reduce damage output when durability thresholds are reached.
 
-    VI.ReceiveDamage (Method): Processes incoming damage events by evaluating hit location multipliers and armor-based damage reduction, subsequently updating the character's health state according to the final calculated damage value.
+    VI. ReceiveDamage (Method): Processes incoming damage events by multiplying the base damage according to the hit body part, reducing the result by 50% of the character's armor value, and ensuring the final damage is not negative before updating the character's health.
 
 🗂️ 2. Bosses
 
