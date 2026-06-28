@@ -1,4 +1,6 @@
-﻿using Batalha_Primeira_Era.Core.Bosses;
+﻿using Batalha_Primeira_Era.Core;
+using Batalha_Primeira_Era.Core.Bosses;
+using Batalha_Primeira_Era.Core.Enimies;
 using Batalha_Primeira_Era.Core.Heroes;
 using Batalha_Primeira_Era.Items.BossAction.DragonAtack;
 using Batalha_Primeira_Era.Items.Inventory;
@@ -10,6 +12,10 @@ namespace Batalha_Primeira_Era
     {
         static void Main(string[] args)
         {
+            Horde orcHorde = new Horde("Gorgoroth Vanguard");
+            
+            Inventory mochilaGoblin1 = new Inventory(5);
+            Inventory mochilaGoblin2 = new Inventory(5);
             Inventory mochilaDoLadino = new Inventory(5);
             Inventory mochilaDoArqueiro = new Inventory(5);
             Inventory mochilaDoMago = new Inventory(5);
@@ -29,7 +35,14 @@ namespace Batalha_Primeira_Era
             Wizard galadriel = new Wizard("Galadriel", 90f, 70, 70, 14, 17, 57, mochilaDoMago);
             Dragon glaurung = new Dragon("Glaurung", 100f, 78, 80, 50, 30, 40, mochilaDoDragao);
             Spectrum nazgul = new Spectrum("Agnmar", 100f, 78, 80, 45, 78, 67, mochilaDoEspectro);
+            Goblin goblin1 = new Goblin("Goblin Slasher", 40f, 10, 0, 0, 20, 5, mochilaGoblin1, orcHorde);
+            Goblin goblin2 = new Goblin("Goblin Archer", 40f, 10, 0, 0, 20, 5, mochilaGoblin2, orcHorde);
 
+            orcHorde.AddMember(goblin1);
+            orcHorde.AddMember(goblin2);
+            
+            mochilaGoblin1.Additem(sting);
+            mochilaGoblin2.Additem(sting);
             mochilaDoLadino.Additem(sting);
             mochilaDoArqueiro.Additem(Bow);
             mochilaDoMago.Additem(staffinitial);
@@ -44,9 +57,11 @@ namespace Batalha_Primeira_Era
 
             glaurung.LifeMultiplier(glaurung);
             nazgul.LifeMultiplier(nazgul);
-
+    
             frodo.TakeAction(glaurung);
             legolas.TakeAction(glaurung);
+            legolas.TakeAction(goblin1);
+
             if (nazgul.DefendAgainstAttacker(frodo))
             {
                 frodo.TakeAction(nazgul);
