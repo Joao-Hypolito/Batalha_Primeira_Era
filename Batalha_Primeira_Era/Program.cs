@@ -28,7 +28,7 @@ namespace Batalha_Primeira_Era
             Great_Sword morgul = new Great_Sword("Morgul", 50f, 30, 25, 56);
             Grazing GrazingDragon = new Grazing("Grazing", 80f, 10, 9, 30);
             DragonGaze Gaze = new DragonGaze("Dragon Gaze", 0f, 0, 0, 0);
-            Bow Bow = new Bow("Bow", 67f, 20, 40, 20);
+            Bow elvenBow = new Bow("Arco do Vento Élfico", 10f, 5, 25, 10, 3.0f, 0.0f);
 
             Rogue frodo = new Rogue("Frodo", 100f, 60, 20, 40, 50, 15, mochilaDoLadino);
             Archer legolas = new Archer("Legolas", 87f, 60, 20, 40, 50, 15, mochilaDoArqueiro);
@@ -44,7 +44,7 @@ namespace Batalha_Primeira_Era
             mochilaGoblin1.Additem(sting);
             mochilaGoblin2.Additem(sting);
             mochilaDoLadino.Additem(sting);
-            mochilaDoArqueiro.Additem(Bow);
+            mochilaDoArqueiro.Additem(elvenBow);
             mochilaDoMago.Additem(staffinitial);
             mochilaDoDragao.Additem(Gaze);
             mochilaDoDragao.Additem(GrazingDragon);
