@@ -8,10 +8,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Core\Enemies\**" />
-    <EmbeddedResource Remove="Core\Enemies\**" />
-    <None Remove="Core\Enemies\**" />
-  </ItemGroup>
-
 </Project>

@@ -9,15 +9,30 @@ namespace Batalha_Primeira_Era.Items.BossAction.DragonAtack
 {
     public class Grazing: Weapon
     {
-        public Grazing(string name, float baseDamage, int reStrength, int reDexterity, int reKnowledge) :
-            base(name, baseDamage, reStrength, reDexterity, reKnowledge)
-        { }
-        
+        // Novas propriedades específicas de arcos para controlar o escalonamento
+        public float DexScaling { get; private set; }
+        public float StrScaling { get; private set; }
+        public float KnowScaling { get; private set; }
 
-        public override float CalculateDamage(Character wielder)
+        // Adicionamos reDexterity, reKnowledge, etc., e também os novos scalings no construtor
+        public Grazing(string name, float baseDamage, int reStrength, int reDexterity, int reKnowledge, float dexScaling, float strScaling, float knowScaling) :
+            base(name, baseDamage, reStrength, reDexterity, reKnowledge)
         {
-            float variation = new Random().Next(90, 110) / 100f;
-            return (BaseDamage + (wielder.Strength * 1.5f)) * variation;
+            DexScaling = dexScaling;
+            StrScaling = strScaling;
+            KnowScaling = knowScaling;
+        }
+
+        public override float CalculateDamage(Batalha_Primeira_Era.Core.Character wielder)
+        {
+            Use();
+
+            // Agora a fórmula usa os atributos do personagem MULTIPLICADOS pelo escalonamento único DESSE arco
+            float dexBonus = wielder.Dexterity * DexScaling;
+            float strBonus = wielder.Strength * StrScaling;
+            float knowBonus = wielder.Knowledge * KnowScaling;
+
+            return CurrentDamage + dexBonus + strBonus + knowBonus;
         }
     }
 }

@@ -23,12 +23,12 @@ namespace Batalha_Primeira_Era
             Inventory mochilaDoEspectro = new Inventory(5);
 
 
-            Dagger sting = new Dagger("Sting", 97f, 10, 10, 10);
-            Staff staffinitial = new Staff("Staff", 80f, 10, 9, 30);
-            Great_Sword morgul = new Great_Sword("Morgul", 50f, 30, 25, 56);
-            Grazing GrazingDragon = new Grazing("Grazing", 80f, 10, 9, 30);
-            DragonGaze Gaze = new DragonGaze("Dragon Gaze", 0f, 0, 0, 0);
-            Bow elvenBow = new Bow("Arco do Vento Élfico", 10f, 5, 25, 10, 3.0f, 0.0f);
+            Bow elvenBow = new Bow("Arco do Vento Élfico", 10f, 5, 5, 25, 10, 3.0f, 0.0f);
+            Dagger sting = new Dagger("Sting", 97f, 10, 10, 10, 2.5f, 0.2f, 0.0f);
+            Staff staffinitial = new Staff("Staff", 80f, 10, 9, 30, 0.0f, 0.0f, 3.5f);
+            Great_Sword morgul = new Great_Sword("Morgul", 50f, 30, 25, 56, 0.2f, 3.0f, 1.5f);
+            Grazing grazingDragon = new Grazing("Grazing", 80f, 10, 9, 30, 1.5f, 1.5f, 0.0f);
+            DragonGaze gaze = new DragonGaze("Dragon Gaze", 120f, 10, 15, 40, 1.0f, 0.0f, 4.0f);
 
             Rogue frodo = new Rogue("Frodo", 100f, 60, 20, 40, 50, 15, mochilaDoLadino);
             Archer legolas = new Archer("Legolas", 87f, 60, 20, 40, 50, 15, mochilaDoArqueiro);
@@ -46,8 +46,8 @@ namespace Batalha_Primeira_Era
             mochilaDoLadino.Additem(sting);
             mochilaDoArqueiro.Additem(elvenBow);
             mochilaDoMago.Additem(staffinitial);
-            mochilaDoDragao.Additem(Gaze);
-            mochilaDoDragao.Additem(GrazingDragon);
+            mochilaDoDragao.Additem(gaze);
+            mochilaDoDragao.Additem(grazingDragon);
             mochilaDoEspectro.Additem(morgul);
 
             mochilaDoDragao.EquipWeaponFromSlot(1, glaurung); 
@@ -69,7 +69,7 @@ namespace Batalha_Primeira_Era
 
             Console.WriteLine("\n---Enemy's Turn---");
 
-            Gaze.Dragongaze(galadriel);
+            gaze.Dragongaze(galadriel);
             nazgul.TakeAction(frodo);
 
         }

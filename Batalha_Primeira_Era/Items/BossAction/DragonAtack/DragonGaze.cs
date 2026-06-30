@@ -9,16 +9,30 @@ namespace Batalha_Primeira_Era.Items.BossAction.DragonAtack
 {
     public class DragonGaze: Weapon
     {
-        public DragonGaze(string name, float baseDamage, int reStrength, int reDexterity, int reKnowledge) :
+        // Novas propriedades específicas de arcos para controlar o escalonamento
+        public float DexScaling { get; private set; }
+        public float StrScaling { get; private set; }
+        public float KnowScaling { get; private set; }
+
+        // Adicionamos reDexterity, reKnowledge, etc., e também os novos scalings no construtor
+        public DragonGaze(string name, float baseDamage, int reStrength, int reDexterity, int reKnowledge, float dexScaling, float strScaling, float knowScaling) :
             base(name, baseDamage, reStrength, reDexterity, reKnowledge)
-        { }
-
-
-        public override float CalculateDamage(Character wielder)
         {
-            float finalDamage = this.BaseDamage + (wielder.Strength * 1.5f);
+            DexScaling = dexScaling;
+            StrScaling = strScaling;
+            KnowScaling = knowScaling;
+        }
 
-            return finalDamage;
+        public override float CalculateDamage(Batalha_Primeira_Era.Core.Character wielder)
+        {
+            Use();
+
+            // Agora a fórmula usa os atributos do personagem MULTIPLICADOS pelo escalonamento único DESSE golpe
+            float dexBonus = wielder.Dexterity * DexScaling;
+            float strBonus = wielder.Strength * StrScaling;
+            float knowBonus = wielder.Knowledge * KnowScaling;
+
+            return CurrentDamage + dexBonus + strBonus + knowBonus;
         }
 
         public void Dragongaze(Character wielder)
