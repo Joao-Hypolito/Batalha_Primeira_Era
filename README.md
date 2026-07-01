@@ -42,7 +42,7 @@ Heroes: The classes inherits from Character, a hybrid hero in the game Batalha_P
 
 🗂️ 4. Weapons
 
-Weapons: This class encapsulates the specific attributes and behaviors of weaponry for each hero class, thereby enhancing both code readability and overall system maintainability. By leveraging this structural design, the class exposes the CalculateDamage method, which not only computes the final strike value but also dynamically manages and overrides the weapon's durability during combat sequences. Consequently, this centralized logic ensures that combat calculations remain consistent and easily scalable as new hero classes or equipment types are introduced.
+Weapons: This class encapsulates the specific attributes and behaviors of weaponry for each hero class, thereby enhancing both code readability and overall system maintainability. By leveraging this structural design, the class exposes the CalculateDamage method, which not only computes the final strike value but also dynamically manages and overrides the weapon's durability during combat sequences. Furthermore, this method incorporates an attribute-based scaling system (Strength, Dexterity, and Knowledge), multiplying the wielder's core stats by the weapon's unique scaling factors to calculate dynamic bonus damage. Consequently, this centralized logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
 
 🗂️ 5. Inventory
 
