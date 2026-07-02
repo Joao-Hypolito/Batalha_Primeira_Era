@@ -1,24 +1,32 @@
 🛡️ Technical Summary: The Base Class
 
-The Character class is an abstract class that serves as the definitive blueprint for creating any hero, minion, or creature within the Batalha Primeira Era universe. Furthermore, it implements the IDamageable interface. Consequently, any character derived from this base class inherently acquires the mechanical capability to receive damage and seamlessly interact within the combat flow.
+The `Character` class is an abstract class that serves as the definitive blueprint for creating any hero, minion, or creature within the *Batalha Primeira Era* universe. It implements the `IDamageable` interface, ensuring that any derived character inherently acquires the mechanical capability to receive damage and seamlessly interact within the combat flow.
 
-Here is the logical division of its structural management:
+---
 
-🗂️ 1. Attributes and Data shielding (Encapsulation)
+## 🗂️ Core Architecture & Structural Management
 
-The class encapsulates the character's core state data and gameplay statistics. Through the use of the Math.Clamp method, attribute values are constrained by predefined domain rules, ensuring they remain within valid boundaries (minimum of 0 and maximum of 99). This validation mechanism prevents overflow conditions and unintended stat escalation.
+### 1. Attributes and Data Shielding (Encapsulation)
+The class encapsulates the character's core state data and gameplay statistics. Through the use of the `Math.Clamp` method, attribute values are constrained by predefined domain rules, ensuring they remain within valid boundaries (minimum of 0 and maximum of 99) to prevent overflow conditions.
 
-    I.LifePoints and Armor: Responsible for managing character survivability, health state, and physical damage mitigation calculations.
+| Attribute | Description |
+| :--- | :--- |
+| **LifePoints & Armor** | Manages character survivability, health state, and physical damage mitigation calculations. |
+| **Primary Stats** | Strength, Dexterity, and Knowledge, which serve as the foundational parameters for gameplay mechanics. |
+| **Spectral Insight** | Special stat governing the ability to perceive the Spectral Realm. Verification is performed at runtime via a dedicated boolean method. |
 
-    II.Primary Attributes: Strength, Dexterity, and Knowledge, which serve as the foundational parameters for gameplay mechanics and character progression.
+> [!NOTE]
+> **Spectral Threshold:** Perception of the Spectral Realm is automatically enabled when the `SpectralInsight` attribute reaches a threshold value of **50 or greater**.
 
-    III.Spectral Insight: Specialized attribute governing the character's ability to perceive and interact with the Spectral Realm. Perception is enabled when the attribute IV.reaches a threshold value of 50 or greater. A dedicated boolean validation method performs runtime verification of this capability.
+---
 
-    IV.Equipped Weapon: Maintains a reference to the currently equipped weapon instance, which is utilized as an input parameter in combat and damage calculation routines.
+### 2. Combat Mechanics & Methods
 
-    V.TakeAction (Method): Executes the offensive action workflow, including target selection, hit location determination, damage computation, and weapon durability validation. The method also applies degradation penalties that may reduce damage output when durability thresholds are reached.
+* **`TakeAction(IDamageable target)`**
+    Executes the offensive action workflow. This includes target selection, hit location determination, damage computation, and weapon durability validation. It also applies degradation penalties that reduce damage output when durability thresholds are reached (e.g., when a weapon is broken).
 
-    VI. ReceiveDamage (Method): Processes incoming damage events by multiplying the base damage according to the hit body part, reducing the result by 50% of the character's armor value, and ensuring the final damage is not negative before updating the character's health.
+* **`ReceiveDamage(float damage, BodyPart hitPart)`**
+    Processes incoming damage events. It multiplies the base damage according to the specific body part hit, reduces the result based on a formula using 50% of the character's armor value, and ensures the final damage is never negative before updating the health pool.
 
 🗂️ 2. Bosses
 
