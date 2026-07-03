@@ -1,10 +1,11 @@
-﻿using Batalha_Primeira_Era.Items.Inventory;
+﻿using Batalha_Primeira_Era.Core.Behaviors;
+using Batalha_Primeira_Era.Items.Inventory;
 using Batalha_Primeira_Era.Items.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Core.Enimies
+namespace Batalha_Primeira_Era.Core.Enemies
 {
     public class Goblin : Character
     {

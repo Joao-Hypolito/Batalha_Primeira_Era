@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Core
+namespace Batalha_Primeira_Era.Core.Behaviors
 {
     public class Horde
     {
         public string HordeName { get; private set; }
-        private List<Character> _members = new List<Character>();
+        public List<Character> _members {get; private set;} = new List<Character>();
+        public int InitialCount { get; private set; }
+        public event Action OnMemberDied;
 
         public Horde(string name)
         {
@@ -17,12 +19,14 @@ namespace Batalha_Primeira_Era.Core
         public void AddMember(Character enemy)
         {
         _members.Add(enemy);
+        InitialCount = _members.Count;
         UpdateHordeBuffs();
         }
 
         public void RemoveMember(Character enemy) 
         {
         _members.Remove(enemy);
+        OnMemberDied?.Invoke();
         UpdateHordeBuffs();
         }
         
