@@ -32,9 +32,16 @@ The class encapsulates the character's core state data and gameplay statistics. 
 
 Spectrum
 
-This class inherits from Character and represents one of the game's bosses. What sets it apart from the others is its ability to break the will of the player-controlled character, should their discernment points prove insufficient for the confrontation.
+This class inherits from Character and represents a specific boss archetype within the game. Its defining mechanic is the ability to mentally fracture the player-controlled character if their cognitive defenses are insufficient prior to the encounter.
 
-DefendAgainstAttacker: This boolean method takes a Character object, named target, as a parameter to evaluate its SpectralInsight value. If this value is below 40 points, the Spectrum reduces the player's weapon durability to zero, rendering it useless during combat. Conversely, if the insight is equal to or greater than 40, the protagonist becomes immune to the boss's attack.
+DefendAgainstAttacker
+This method processes a Character object (designated as target) to evaluate its SpectralInsight attribute.
+
+Insight below 40: The entity shatters the protagonist's resolve, instantly reducing their current weapon's durability to zero and rendering it ineffective for the remainder of the encounter.
+
+Insight of 40 or higher: The protagonist successfully mitigates the mental assault, granting complete immunity to this specific status degradation.
+
+Returns: bool (indicates whether the defensive check was successfully passed).
 
 Dragon
 
