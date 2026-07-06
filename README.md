@@ -57,25 +57,44 @@ The `Dragon` class represents one of the primary and most formidable bosses with
 > [!NOTE]
 > **Multiplication Factor:** Instantly scales the Dragon's current health pool by **10x** (`lifePoints *= 10`). This ensures a massive, multi-phased challenge during encounter transitions.
 
-Dragon
+ ## 🗂️ Heroes
 
-The Dragon class represents one of the primary and most formidable bosses within the Batalha Primeira Era universe. It inherits directly from the core Character class, expanding its mechanical complexity and threat level in combat.
+### OOP Hybrid Framework
+The hero classes inherit directly from `Character`, serving as the foundational player-controlled archetypes in *Batalha Primeira Era*. This subclass architecture demonstrates a robust implementation of Object-Oriented Programming (OOP) principles in C# to achieve dynamic gameplay behavior.
 
-    I. Targetable Body Parts (GetTargetTableParts) The class overrides the base target table system to introduce localized damage mechanics. In addition to standard character hitboxes, players can strategically target a Dragon's specific vulnerabilities: BodyPart.Wings: Allows players to target the wings (potentially affecting mobility or airborne actions). BodyPart.Belly: Exposes the traditional weak point of ancient drakes for high-risk, high-reward tactical strikes.
+| Principle | Core Implementation |
+| :--- | :--- |
+| **Inheritance** | Extends the abstract base `Character` to automatically absorb global attributes and core combat contracts. |
+| **Interfaces with Generics** | Enforces specialized, type-safe behaviors tailored to specific hero attributes and class roles. |
+| **Polymorphism** | Achieved through **Constructor Overloading** and method overrides, allowing distinct customization for each hero type. |
 
-    II. Boss Scaling (LifeMultiplier) To reflect its status as an apex predator of the First Age, the class features a dynamic health-scaling method: Multiplication Factor: Instantly scales the Dragon's current health pool by 10x (lifePont *= 10). This ensures a massive, multi-phased challenge during encounter transitions.
+---
 
-🗂️ 3. Heroes
+## 🗂️ Weapons
 
-Heroes: The classes inherits from Character, a hybrid hero in the game Batalha_Primeira_Era. It is a subclass that demonstrates a solid understanding of Object-Oriented Programming (OOP) principles in C#, specifically Inheritance, Interfaces with Generics, and Constructor Overloading (Polymorphism).
+### Weaponry Logic & Attribute Scaling
+This class encapsulates the specific attributes and behaviors of weaponry for each hero class, enhancing both code readability and overall system maintainability. It centralizes damage output calculations and equipment wear parameters.
 
-🗂️ 4. Weapons
+| Method / System | Description |
+| :--- | :--- |
+| **`CalculateDamage`** | Computes the final strike value and dynamically manages weapon degradation during combat sequences. |
+| **Attribute Scaling** | Incorporates a multi-attribute scaling matrix (**Strength**, **Dexterity**, and **Knowledge**) to multiply the wielder's core stats by unique weapon scaling factors. |
 
-Weapons: This class encapsulates the specific attributes and behaviors of weaponry for each hero class, thereby enhancing both code readability and overall system maintainability. By leveraging this structural design, the class exposes the CalculateDamage method, which not only computes the final strike value but also dynamically manages and overrides the weapon's durability during combat sequences. Furthermore, this method incorporates an attribute-based scaling system (Strength, Dexterity, and Knowledge), multiplying the wielder's core stats by the weapon's unique scaling factors to calculate dynamic bonus damage. Consequently, this centralized logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
+> [!NOTE]
+> **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
 
-🗂️ 5. Inventory
+---
 
-The Inventory class was introduced to decouple item management and equipment logic from the core character classes. Instead of overloading the Character class with lists of possessions, the Inventory acts as a dedicated controller that encapsulates storage boundaries and tracks item states.
+## 🗂️ Inventory
 
-The main advantage of this implementation is its clean interaction within the main game loop.
+### Decoupled Storage Controller
+The `Inventory` class was introduced to completely decouple item management and equipment logic from the core character classes. Instead of overloading the `Character` class with asset lists, the inventory acts as a dedicated standalone manager.
+
+| System Feature | Management Domain |
+| :--- | :--- |
+| **Encapsulation** | Enforces hard storage boundaries, maximum capacity caps, and strict item state tracking. |
+| **State Tracking** | Dynamically monitors item durability, equipment status, and active item properties. |
+
+> [!IMPORTANT]
+> **Architecture Advantage:** The main architectural benefit of this implementation is its clean, zero-overhead interaction within the main game loop, avoiding data clutter inside the character instances.
 
