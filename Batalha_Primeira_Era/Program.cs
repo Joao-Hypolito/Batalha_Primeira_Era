@@ -14,14 +14,14 @@ namespace Batalha_Primeira_Era
         {
             Horde orcHorde = new Horde("Gorgoroth Vanguard");
             
-            Inventory mochilaGoblin1 = new Inventory(5);
-            Inventory mochilaGoblin2 = new Inventory(5);
-            Inventory mochilaDoLadino = new Inventory(5);
-            Inventory mochilaDoArqueiro = new Inventory(5);
-            Inventory mochilaDoMago = new Inventory(5);
-            Inventory mochilaDoDragao = new Inventory(5);
-            Inventory mochilaDoEspectro = new Inventory(5);
-            Inventory mochilaDoLich = new Inventory(5);
+            Inventory goblin1Backpack = new Inventory(5);
+            Inventory goblin2Backpack = new Inventory(5);
+            Inventory rogueBackpack = new Inventory(5);
+            Inventory archerBackpack = new Inventory(5);
+            Inventory mageBackpack = new Inventory(5);
+            Inventory dragonBackpack = new Inventory(5);
+            Inventory wraithBackpack = new Inventory(5);
+            Inventory lichBackpack = new Inventory(5);
 
             Bow arcomagico = new Bow("ArcoMagico", 50, 3, 20, 40, 2f, 7f, 10f);
             Bow elvenBow = new Bow("Arco do Vento Élfico", 10f, 5, 5, 25, 10, 3.0f, 0.0f);
@@ -31,34 +31,34 @@ namespace Batalha_Primeira_Era
             Grazing grazingDragon = new Grazing("Grazing", 80f, 10, 9, 30, 1.5f, 1.5f, 0.0f);
             DragonGaze gaze = new DragonGaze("Dragon Gaze", 120f, 10, 15, 40, 1.0f, 0.0f, 4.0f);
 
-            Rogue frodo = new Rogue("Frodo", 100f, 60, 20, 40, 50, 15, mochilaDoLadino);
-            Archer legolas = new Archer("Legolas", 87f, 60, 20, 40, 50, 15, mochilaDoArqueiro);
-            Wizard galadriel = new Wizard("Galadriel", 90f, 70, 70, 14, 17, 57, mochilaDoMago);
-            Dragon glaurung = new Dragon("Glaurung", 100f, 78, 80, 50, 30, 40, mochilaDoDragao);
-            Spectrum nazgul = new Spectrum("Agnmar", 100f, 78, 80, 45, 78, 67, mochilaDoEspectro);
-            Goblin goblin1 = new Goblin("Goblin Slasher", 40f, 10, 0, 0, 20, 5, mochilaGoblin1, orcHorde);
-            Goblin goblin2 = new Goblin("Goblin Archer", 40f, 10, 0, 0, 20, 5, mochilaGoblin2, orcHorde);
-            Lich sulyvahn = new Lich("Pontiff Sulyvahn", 120f, 80, 30, 25, 20, 70, mochilaDoLich, orcHorde);
+            Rogue frodo = new Rogue("Frodo", 100f, 60, 20, 40, 50, 15, rogueBackpack);
+            Archer legolas = new Archer("Legolas", 87f, 60, 20, 40, 50, 15, archerBackpack);
+            Wizard galadriel = new Wizard("Galadriel", 90f, 70, 70, 14, 17, 57, mageBackpack);
+            Dragon glaurung = new Dragon("Glaurung", 100f, 78, 80, 50, 30, 40, dragonBackpack);
+            Spectrum nazgul = new Spectrum("Agnmar", 100f, 78, 80, 45, 78, 67, wraithBackpack);
+            Goblin goblin1 = new Goblin("Goblin Slasher", 40f, 10, 0, 0, 20, 5, goblin1Backpack, orcHorde);
+            Goblin goblin2 = new Goblin("Goblin Archer", 40f, 10, 0, 0, 20, 5, goblin2Backpack, orcHorde);
+            Lich sulyvahn = new Lich("Pontiff Sulyvahn", 120f, 80, 30, 25, 20, 70, lichBackpack, orcHorde);
 
             orcHorde.AddMember(goblin1);
             orcHorde.AddMember(goblin2);
             
-            mochilaGoblin1.Additem(sting);
-            mochilaGoblin2.Additem(sting);
-            mochilaDoLadino.Additem(sting);
-            mochilaDoArqueiro.Additem(elvenBow);
-            mochilaDoArqueiro.Additem(arcomagico);
-            mochilaDoMago.Additem(staffinitial);
-            mochilaDoDragao.Additem(gaze);
-            mochilaDoDragao.Additem(grazingDragon);
-            mochilaDoEspectro.Additem(morgul);
-            mochilaDoLich.Additem(morgul);
+            goblin1Backpack.AddItem(sting);
+            goblin2Backpack.AddItem(sting);
+            rogueBackpack.AddItem(sting);
+            archerBackpack.AddItem(elvenBow);
+            archerBackpack.AddItem(arcomagico);
+            mageBackpack.AddItem(staffinitial);
+            dragonBackpack.AddItem(gaze);
+            dragonBackpack.AddItem(grazingDragon);
+            wraithBackpack.AddItem(morgul);
+            lichBackpack.AddItem(morgul);
 
-            mochilaDoDragao.EquipWeaponFromSlot(1, glaurung); 
-            mochilaDoLadino.EquipWeaponFromSlot(0, frodo);    
-            mochilaDoArqueiro.EquipWeaponFromSlot(0, legolas); 
-            mochilaDoEspectro.EquipWeaponFromSlot(0, nazgul);
-            mochilaDoLich.EquipWeaponFromSlot(0, sulyvahn);
+            dragonBackpack.EquipWeaponFromSlot(1, glaurung); 
+            rogueBackpack.EquipWeaponFromSlot(0, frodo);    
+            rogueBackpack.EquipWeaponFromSlot(0, legolas); 
+            wraithBackpack.EquipWeaponFromSlot(0, nazgul);
+            dragonBackpack.EquipWeaponFromSlot(0, sulyvahn);
 
             glaurung.LifeMultiplier(glaurung);
             nazgul.LifeMultiplier(nazgul);
@@ -66,11 +66,11 @@ namespace Batalha_Primeira_Era
             frodo.TakeAction(glaurung);
             legolas.TakeAction(glaurung);
             
-            Console.WriteLine($"\nDano atual do Lich antes do Goblin morrer: {sulyvahn.CurrentDamage}");
+            Console.WriteLine($"\nLich's current damage before the Goblin dies: {sulyvahn.CurrentDamage}");
             
             legolas.TakeAction(goblin1); 
             
-            Console.WriteLine($"Dano atual do Lich após a morte do Goblin: {sulyvahn.CurrentDamage}\n");
+            Console.WriteLine($"Lich's current damage after the Goblin's death: {sulyvahn.CurrentDamage}\n");
 
             if (nazgul.DefendAgainstAttacker(frodo))
             {

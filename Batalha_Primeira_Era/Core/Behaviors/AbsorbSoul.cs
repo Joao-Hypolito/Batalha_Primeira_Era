@@ -15,25 +15,25 @@ namespace Batalha_Primeira_Era.Core.Behaviors
             _myHorde = horde;
             CurrentDamage = BaseDamage;
 
-            // O SEGREDO ESTÁ AQUI: O AbsorbSoul se inscreve no evento da Horde!
-            // Toda vez que a horda disparar "OnMemberDied", o método "AumentarPoderPelaMorte" será executado.
-            _myHorde.OnMemberDied += AumentarPoderPelaMorte;
+            // THE SECRET IS HERE: The AbsorbSoul subscribes to the Horde event!
+            // Every time that horde triggers "OnMemberDied", the method "IncreasePowerByDeath" will be executed.
+            _myHorde.OnMemberDied += IncreasePowerByDeath;
         }
 
-        // Esse método roda AUTOMATICAMENTE sempre que um Goblin morre
-        private void AumentarPoderPelaMorte()
+        // This method runs AUTOMATICALLY whenever a Goblin dies
+        private void IncreasePowerByDeath()
         {
             if (_myHorde == null) return;
             
-            // Calcula quantos morreram baseando-se no estado atual da lista
+            // Calcule how many died based on the current state of list.
             int deadGoblins = _myHorde.InitialCount - _myHorde._members.Count;
 
-            // O Lich ganha +5 de dano por cada alma que já se foi
+            // The Lich gains +5 for damage for each soul that is already gone
             CurrentDamage = BaseDamage + (deadGoblins * 5);
 
             if (deadGoblins > 0) 
             {
-                Console.WriteLine($"[SOUL ABSORB] Um aliado caiu! O Lich absorveu a alma. Total de mortos: {deadGoblins}. Dano atual do Lich: {CurrentDamage}");
+                Console.WriteLine($"[SOUL ABSORB] An ally has fallen! The Lich absorbed the soul. Total dead: {deadGoblins}. Lich's current damage: {CurrentDamage}");
             }
         }
     }

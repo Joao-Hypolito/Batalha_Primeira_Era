@@ -17,7 +17,7 @@ namespace Batalha_Primeira_Era.Items.Inventory
             _slots = new List<Weapon>();
         }
 
-        public void Additem(Weapon item)
+        public void AddItem(Weapon item)
         {
             if(_slots.Count >= MaxCapacity) 
             {
@@ -40,17 +40,18 @@ namespace Batalha_Primeira_Era.Items.Inventory
 
         public void EquipWeaponFromSlot(int slotIndex, Character character)
         {
-            // Validação física: o slot existe na mochila?
+            
+            // Physical Validation: does the slot exist in the bag?
             if (slotIndex < 0 || slotIndex >= _slots.Count)
             {
                 Console.WriteLine("Invalid inventory slot!");
                 return;
             }
 
-            // Pega a arma escolhida do inventário
+            // Get the weapon chosen from the inventory
             Weapon weaponToEquip = _slots[slotIndex];
 
-            // Altera o estado do personagem diretamente
+            // Directly Change the character's state 
             character.EquippedWeapon = weaponToEquip;
             Console.WriteLine($"\n[EQUIP] {character.Name} successfully equipped: {weaponToEquip.Name}!");
         }

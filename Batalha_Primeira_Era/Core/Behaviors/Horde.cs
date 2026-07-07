@@ -30,30 +30,29 @@ namespace Batalha_Primeira_Era.Core.Behaviors
         UpdateHordeBuffs();
         }
         
-        public void UpdateHordeBuffs()
-        {
-
-        int count = _members.Count;
-
-            foreach (var enemy in _members)
+            public void UpdateHordeBuffs()
             {
-                if (count >= 5) // Bando Gigante: Coragem total!
+                int count = _members.Count;
+
+                foreach (var enemy in _members)
                 {
-                    enemy.Armor = 40f;    // Mais armadura por estarem compactados
-                    enemy.Strength = 30;  // Bônus massivo de dano
-                }
-                else if (count >= 2) // Pequeno grupo: Ganhando confiança
-                {
-                    enemy.Armor = 20f;
-                    enemy.Strength = 20;
-                }
-                else // Sobrou apenas 1: O covarde sozinho!
-                {
-                    enemy.Armor = 5f;    // Defesa ridícula de medo
-                    enemy.Strength = 5;   // Ataque fraco porque quer fugir
+                    if (count >= 5) // Giant Pack: Total courage!
+                    {
+                        enemy.Armor = 40f;    // More armor because they are tightly packed
+                        enemy.Strength = 30;  // Massive damage bonus
+                    }
+                    else if (count >= 2) // Small group: Gaining confidence
+                    {
+                        enemy.Armor = 20f;
+                        enemy.Strength = 20;
+                    }
+                    else // Only 1 left: The coward alone!
+                    {
+                        enemy.Armor = 5f;    // Ridiculous defense due to fear
+                        enemy.Strength = 5;   // Weak attack because they want to flee
+                    }
                 }
             }
-        }
 
     }
 }

@@ -6,23 +6,23 @@ using System.Text;
 
 namespace Batalha_Primeira_Era.Core.Enemies
 {
-    // Mudei para public para que o seu Program.cs consiga instanciar sem problemas de herança
+    // Changed to public so your Program.cs can instantiate it without inheritance issues
     public class Lich : Character
     {
-        // O Lich agora tem uma instância da mecânica AbsorbSoul dele
+        // The Lich now has an instance of its AbsorbSoul mechanic
         private AbsorbSoul _absorbSoulBehavior;
 
-        // O construtor recebe os dados do Lich e a Horda que ele vai monitorar
+        // The constructor receives the Lich's data and the Horde it will monitor
         public Lich(string name, float life, int insight, float defense, int strength, int dexterity, int knowledge, Inventory item, Horde horde) 
             : base(name, life, insight, defense, strength, dexterity, knowledge, item)
         {
-            // Inicializa a mecânica e passa a horda para ela começar a monitorar os Goblins
+            // Initializes the mechanic and passes the horde to start monitoring the Goblins
             _absorbSoulBehavior = new AbsorbSoul();
             _absorbSoulBehavior.SetHorde(horde);
         }
 
-        // Criamos uma propriedade para o Lich pegar o dano atualizado de dentro do AbsorbSoul
-        // Quando você for dar o comando de ataque do Lich, você usa "lich.CurrentDamage"
+        // Property for the Lich to get the updated damage from within AbsorbSoul
+        // When you trigger the Lich's attack command, use "lich.CurrentDamage"
         public int CurrentDamage 
         {
             get { return _absorbSoulBehavior.CurrentDamage; }
