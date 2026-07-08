@@ -32,7 +32,7 @@ namespace Batalha_Primeira_Era.Core.Enemies
         {
             base.ReceiveDamage(damage, hitPart);
 
-            if (this.lifePont <= 0)
+            if (this.lifePoint <= 0)
             {
                 Console.WriteLine($"{Name} has been vanquished!");
             }

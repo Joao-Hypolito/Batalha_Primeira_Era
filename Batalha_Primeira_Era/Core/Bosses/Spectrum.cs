@@ -22,7 +22,7 @@ namespace Batalha_Primeira_Era.Core.Bosses
         }
         public void LifeMultiplier(Character target)
         {
-            lifePont *= 5;
+            lifePoint *= 5;
         }
 
         public void Wraiths()

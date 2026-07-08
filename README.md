@@ -4,7 +4,7 @@ The `Character` class is an abstract class that serves as the definitive bluepri
 
 ---
 
-## 🗂️ Core Architecture & Structural Management
+ ## 🗂️ Core Architecture & Structural Management
 
 ### 1. Attributes and Data Shielding (Encapsulation)
 The class encapsulates the character's core state data and gameplay statistics. Through the use of the `Math.Clamp` method, attribute values are constrained by predefined domain rules, ensuring they remain within valid boundaries (minimum of 0 and maximum of 99) to prevent overflow conditions.
@@ -28,9 +28,9 @@ The class encapsulates the character's core state data and gameplay statistics. 
 * **`ReceiveDamage(float damage, BodyPart hitPart)`**
     Processes incoming damage events. It multiplies the base damage according to the specific body part hit, reduces the result based on a formula using 50% of the character's armor value, and ensures the final damage is never negative before updating the health pool.
 
-## 🗂️ 2. Bosses
+ ## 🗂️ Bosses
 
-### Spectrum
+### 1. Spectrum
 This class inherits from `Character` and represents a specific boss archetype within the game. Its defining mechanic is the ability to mentally fracture the player-controlled character if their cognitive defenses are insufficient prior to the encounter.
 
 ### `DefendAgainstAttacker`
@@ -46,7 +46,7 @@ This method processes a `Character` object (designated as target) to evaluate it
 
 ---
 
-### Dragon
+### 2. Dragon
 The `Dragon` class represents one of the primary and most formidable bosses within the *Batalha Primeira Era* universe. It inherits directly from the core `Character` class, expanding its mechanical complexity and threat level in combat.
 
 | Mechanic / System | Description |
@@ -68,9 +68,17 @@ The hero classes inherit directly from `Character`, serving as the foundational 
 | **Interfaces with Generics** | Enforces specialized, type-safe behaviors tailored to specific hero attributes and class roles. |
 | **Polymorphism** | Achieved through **Constructor Overloading** and method overrides, allowing distinct customization for each hero type. |
 
----
+ ## 🗂️ Enemies
 
-## 🗂️ Weapons
+### 1. Goblin 
+This class inherits from `Character` and represents a pricipal enimy archetype within the game. It features a  dynamic **Horde mechanic**, where Goblins again bonus damage depending on how many other Goblins are 
+present in the battle (the larger the horde, the stronger they get).
+
+### `ReceiveDamage(float damage, BodyPart hitPart)`
+This method overrides the base damage logic to calculate the final damage taken based on the specific `BodyPart` hit. Additionally, it tracks the `_myHorde` attribute: if the Goblin's life points drop to zero or below, it is automatically removed from the horde, dynamically lowering the group's overall morale and strength.
+
+
+ ## 🗂️ Weapons
 
 ### Weaponry Logic & Attribute Scaling
 This class encapsulates the specific attributes and behaviors of weaponry for each hero class, enhancing both code readability and overall system maintainability. It centralizes damage output calculations and equipment wear parameters.
@@ -83,9 +91,7 @@ This class encapsulates the specific attributes and behaviors of weaponry for ea
 > [!NOTE]
 > **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
 
----
-
-## 🗂️ Inventory
+ ## 🗂️ Inventory
 
 ### Decoupled Storage Controller
 The `Inventory` class was introduced to completely decouple item management and equipment logic from the core character classes. Instead of overloading the `Character` class with asset lists, the inventory acts as a dedicated standalone manager.

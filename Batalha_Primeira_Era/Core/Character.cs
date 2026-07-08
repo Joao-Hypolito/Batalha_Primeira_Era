@@ -71,7 +71,7 @@ namespace Batalha_Primeira_Era.Core
     public abstract class Character : IDamageable
     {
         public string Name { get; set; }
-        public float lifePont { get; protected set; }
+        public float lifePoint { get; protected set; }
 
         // Garante que os pontos de discernimento tenham o limite de 0 a 99
         private int _spectralInsight = 0;
@@ -112,7 +112,7 @@ namespace Batalha_Primeira_Era.Core
         public Character(string name, float life, int insight, float defense, int strength, int dexterity, int knowledge, Inventory item) 
         {
             Name = name;
-            lifePont = life;
+            lifePoint = life;
             SpectralInsight = insight;
             Armor = defense;
             Strength = strength;
@@ -207,14 +207,14 @@ namespace Batalha_Primeira_Era.Core
             //Garante que o dano nunca seja negativo, sem isso, se a sua armadura fosse muito alta, você seria curado ao levar um golpe
             if (damageAfterDefense < 0) damageAfterDefense = 0;
 
-            Console.WriteLine($"{Name}'s initial lifespan was {lifePont}");
+            Console.WriteLine($"{Name}'s initial lifespan was {lifePoint}");
 
             //A execucao final atualiza o atributo de vida do Personagem com o valor mitigado
 
-            lifePont -= damageAfterDefense;
-            if (lifePont < 0) lifePont = 0;
+            lifePoint -= damageAfterDefense;
+            if (lifePoint < 0) lifePoint = 0;
             Console.WriteLine($"{Name} took {damageAfterDefense:F1} damage.");
-            Console.WriteLine($"{Name}'s final lifespan is {lifePont}");
+            Console.WriteLine($"{Name}'s final lifespan is {lifePoint}");
         }
 
         //uso de private é para garantir:

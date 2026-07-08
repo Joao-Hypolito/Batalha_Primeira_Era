@@ -22,7 +22,7 @@ namespace Batalha_Primeira_Era.Core.Enemies
             base.ReceiveDamage(damage, hitPart);
 
             // Se o Goblin morrer, ele sai da agregação e o bando enfraquece!
-            if (this.lifePont <= 0 && _myHorde != null)
+            if (this.lifePoint <= 0 && _myHorde != null)
             {
                 Console.WriteLine($"{Name} has fallen! The horde loses morale!");
                 _myHorde.RemoveMember(this);

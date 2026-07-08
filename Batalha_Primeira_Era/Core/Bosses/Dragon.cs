@@ -20,7 +20,7 @@ namespace Batalha_Primeira_Era.Core.Bosses
         }
         public void LifeMultiplier(Character target)
         {
-            lifePont *= 10;
+            lifePoint *= 10;
         }
 
     }
