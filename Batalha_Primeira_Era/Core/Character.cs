@@ -135,6 +135,11 @@ namespace Batalha_Primeira_Era.Core
                 return new List<BodyPart> {BodyPart.Head, BodyPart.Torso, BodyPart.Arms, BodyPart.Legs };
             }
 
+        public void SetLifePoint(float value)
+        {
+            lifePoint = value; 
+        }
+
 
         /// <summary>
         /// Um método publico (define uma acao publica), o parâmetro indica que o método espera receber um do tipo alvo.

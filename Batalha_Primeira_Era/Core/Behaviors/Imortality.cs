@@ -37,7 +37,8 @@ namespace Batalha_Primeira_Era.Core.Behaviors
             
             if (_character.lifePoint < (_maxLife * 0.01f))
             {
-                _character.lifePoint = (float)Math.Round(_maxLife * 0.01f);
+                float roundedLife = (float)Math.Round(_maxLife * 0.01f);
+                _character.SetLifePoint(roundedLife);
             }
 
             Console.WriteLine($"{_character.Name} ativou determinação dos Lamenters! Invulnerável por {seconds} segundos.");
