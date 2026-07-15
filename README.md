@@ -7,13 +7,13 @@ The `Character` class is an abstract class that serves as the definitive bluepri
  ## 🗂️ Core Architecture & Structural Management
 
 ### 1. Attributes and Data Shielding (Encapsulation)
-The class encapsulates the character's core state data and gameplay statistics. Through the use of the `Math.Clamp` method, attribute values are constrained by predefined domain rules, ensuring they remain within valid boundaries (minimum of 0 and maximum of 99) to prevent overflow conditions.
+This class is responsible for safeguarding the character's essential state information and gameplay-related statistics. By leveraging the Math.Clamp method, all attribute values are restricted to a predefined range, ensuring they remain within acceptable limits (from 0 to 99) and preventing invalid or excessive values.
 
 | Attribute | Description |
 | :--- | :--- |
-| **LifePoints & Armor** | Manages character survivability, health state, and physical damage mitigation calculations. |
-| **Primary Stats** | Strength, Dexterity, and Knowledge, which serve as the foundational parameters for gameplay mechanics. |
-| **Spectral Insight** | Special stat governing the ability to perceive the Spectral Realm. Verification is performed at runtime via a dedicated boolean method. |
+| **LifePoints & Armor** | Handles the character's durability, current health condition, and reduction of incoming physical damage. |
+| **Primary Stats** | Strength, Agility, and Knowledge, which act as the primary drivers for game mechanics and character performance. |
+| **Spectral Insight** | Unique attribute that determines whether the character can detect and interact with the Spectral Realm. Its status is evaluated through a dedicated boolean validation method. |
 
 > [!NOTE]
 > **Spectral Threshold:** Perception of the Spectral Realm is automatically enabled when the `SpectralInsight` attribute reaches a threshold value of **50 or greater**.
