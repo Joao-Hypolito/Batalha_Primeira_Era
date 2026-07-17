@@ -47,7 +47,7 @@ This method processes a `Character` object (designated as target) to evaluate it
 ---
 
 ### 2. Dragon
-The `Dragon` class represents one of the primary and most formidable bosses within the *Batalha Primeira Era* universe. It inherits directly from the core `Character` class, expanding its mechanical complexity and threat level in combat.
+The `Dragon` class defines one of the most powerful and iconic boss encounters within the Batalha Primeira Era framework. Inheriting directly from the base Character class, it introduces advanced combat mechanics and elevated threat dynamics.
 
 | Mechanic / System | Description |
 | :--- | :--- |
