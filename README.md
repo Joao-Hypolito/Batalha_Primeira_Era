@@ -60,7 +60,7 @@ The `Dragon` class defines one of the most powerful and iconic boss encounters w
  ## 🗂️ Heroes
 
 ### OOP Hybrid Framework
-The hero classes inherit directly from `Character`, serving as the foundational player-controlled archetypes in *Batalha Primeira Era*. This subclass architecture demonstrates a robust implementation of Object-Oriented Programming (OOP) principles in C# to achieve dynamic gameplay behavior.
+Hero classes derive directly from Character, establishing the foundational player-controlled archetypes within Batalha Primeira Era. This subclass design showcases a solid application of Object-Oriented Programming (OOP) tenets in C# to drive dynamic gameplay mechanics.
 
 | Principle | Core Implementation |
 | :--- | :--- |
