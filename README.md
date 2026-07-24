@@ -78,7 +78,7 @@ present in the battle (the larger the horde, the stronger they get).
 This method overrides the base damage logic to calculate the final damage taken based on the specific `BodyPart` hit. Additionally, it tracks the `_myHorde` attribute: if the Goblin's life points drop to zero or below, it is automatically removed from the horde, dynamically lowering the group's overall morale and strength.
 
 ### 2. Lamenters
-This classes inherits from `Character`. Its core meachanics revolve around temporary invulnerability and a frenzied atate triggered when its life points drop below a critical threshold.
+This class inherits from ``Character``. Its core mechanics revolve around temporary invulnerability and a frenzied state triggered when its health points drop below a critical threshold.
 
 ### `Imortality`
 This method handles the Lamenter's unique death-defiance logic. When incoming damage reduces its health to or near zero, instead od dying, this method triggers a 5-seconds window. During this time, ir activates a boolean flag to ignore  all further damage, increases its attack parameters (entering a frenzy state), and starts a countdown. Once the timer expires, the method forces the character into the death sequence.
@@ -86,7 +86,7 @@ This method handles the Lamenter's unique death-defiance logic. When incoming da
  ## 🗂️ Weapons
 
 ### Weaponry Logic & Attribute Scaling
-This class encapsulates the specific attributes and behaviors of weaponry for each hero class, enhancing both code readability and overall system maintainability. It centralizes damage output calculations and equipment wear parameters.
+This method handles the Lamenter's unique death-defiance logic. When incoming damage reduces its health to or near zero, instead of dying, this method triggers a 5-second window. During this period, it activates a boolean flag to ignore all further damage, boosts its attack parameters (entering a frenzy state), and starts a countdown. Once the timer expires, the method forces the character into the death sequence.
 
 | Method / System | Description |
 | :--- | :--- |
