@@ -31,18 +31,20 @@ This class is responsible for safeguarding the character's essential state infor
  ## 🗂️ Bosses
 
 ### 1. Spectrum
-This class inherits from ``Character`` and represents a specific boss archetype within the game. Its defining mechanic is the ability to mentally shatter the player-controlled character if their cognitive defenses are inadequate prior to the encounter.
+
+Derived from the `Character` base class, this boss embodies a unique enemy archetype. Its signature ability is to psychologically overwhelm the player whenever the character lacks sufficient mental resilience before the confrontation.
 
 ### `DefendAgainstAttacker`
-This method processes a `Character` object (designated as target) to evaluate its `SpectralInsight` attribute.
 
-| Condition | Outcome |
+This function receives a `Character` instance (used as the target) and inspects its `SpectralInsight` value.
+
+| Condition | Result |
 | :--- | :--- |
-| **Insight below 40** | The entity breaks the protagonist's resolve, instantly reducing their current weapon's durability to zero and rendering it unusable for the remainder of the battle. |
-| **Insight of 40 or higher** | The protagonist successfully resists the mental assault, gaining complete immunity to this specific status degradation. |
+| **Spectral Insight below 40** | The boss destroys the protagonist's mental stability, immediately reducing the durability of the equipped weapon to zero, making it unusable for the rest of the encounter. |
+| **Spectral Insight of 40 or greater** | The protagonist withstands the psychic attack and becomes fully protected against this particular durability-degrading effect. |
 
 > [!IMPORTANT]
-> **Returns:** `bool` (indicates whether the defensive check was successfully passed).
+> **Returns:** `bool` (specifies whether the defensive validation succeeded).
 
 ---
 
