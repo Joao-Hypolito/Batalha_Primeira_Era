@@ -98,16 +98,17 @@ This method handles the Lamenter's unique death-defiance logic. When incoming da
 > [!NOTE]
 > **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
 
- ## 🗂️ Inventory
+## 🗂️ Inventory
 
-### Decoupled Storage Controller
-The `Inventory` class was introduced to completely decouple item management and equipment logic from the core character classes. Instead of overloading the `Character` class with asset lists, the inventory acts as a dedicated standalone manager.
+### Independent Inventory Manager
 
-| System Feature | Management Domain |
+The `Inventory` class was designed to fully separate item handling and equipment responsibilities from the core character implementation. Rather than storing inventory-related data directly inside the `Character` class, this component serves as an autonomous manager dedicated to asset organization.
+
+| System Feature | Responsibility |
 | :--- | :--- |
-| **Encapsulation** | Enforces hard storage boundaries, maximum capacity caps, and strict item state tracking. |
-| **State Tracking** | Dynamically monitors item durability, equipment status, and active item properties. |
+| **Data Encapsulation** | Maintains strict inventory boundaries, enforces storage capacity limits, and guarantees consistent item lifecycle management. |
+| **Runtime State Monitoring** | Continuously manages item durability, equipment assignment, and the current state of usable objects. |
 
 > [!IMPORTANT]
-> **Architecture Advantage:** The main architectural benefit of this implementation is its clean, zero-overhead interaction within the main game loop, avoiding data clutter inside the character instances.
+> **Architectural Benefit:** This design promotes efficient interaction with the primary game loop while keeping character instances lightweight and preventing unnecessary data accumulation within the core classes.
 
