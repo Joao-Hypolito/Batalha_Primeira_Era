@@ -4,19 +4,20 @@ The `Character` class is an abstract class that serves as the definitive bluepri
 
 ---
 
- ## 🗂️ Core Architecture & Structural Management
+## 🗂️ Core Architecture & Structural Management
 
-### 1. Attributes and Data Shielding (Encapsulation)
-This class is responsible for safeguarding the character's essential state information and gameplay-related statistics. By leveraging the Math.Clamp method, all attribute values are restricted to a predefined range, ensuring they remain within acceptable limits (from 0 to 99) and preventing invalid or excessive values.
+### 1. Attribute Management and Data Encapsulation
+
+This class centralizes the management of the character's internal state and gameplay attributes. The `Math.Clamp` method is applied to guarantee that every attribute remains within the valid interval (0–99), protecting the system from invalid assignments and out-of-range values.
 
 | Attribute | Description |
 | :--- | :--- |
-| **LifePoints & Armor** | Handles the character's durability, current health condition, and reduction of incoming physical damage. |
-| **Primary Stats** | Strength, Agility, and Knowledge, which act as the primary drivers for game mechanics and character performance. |
-| **Spectral Insight** | Unique attribute that determines whether the character can detect and interact with the Spectral Realm. Its status is evaluated through a dedicated boolean validation method. |
+| **Health & Armor** | Controls the character's survivability, current health value, and mitigation of incoming physical attacks. |
+| **Base Attributes** | Strength, Agility, and Knowledge, serving as the fundamental statistics that influence gameplay behavior. |
+| **Spectral Perception** | Exclusive attribute responsible for determining whether the character is capable of sensing and interacting with the Spectral Realm. The verification is performed through a dedicated boolean function. |
 
 > [!NOTE]
-> **Spectral Threshold:** Perception of the Spectral Realm is automatically enabled when the `SpectralInsight` attribute reaches a threshold value of **50 or greater**.
+> **Spectral Requirement:** Access to the Spectral Realm becomes available automatically whenever the `SpectralInsight` value is **50 or higher**.
 
 ---
 
