@@ -50,15 +50,16 @@ This function receives a `Character` instance (used as the target) and inspects 
 ---
 
 ### 2. Dragon
-The `Dragon` class defines one of the most powerful and iconic boss encounters within the Batalha Primeira Era framework. Inheriting directly from the base Character class, it introduces advanced combat mechanics and elevated threat dynamics.
+
+The `Dragon` class represents one of the game's most formidable boss entities in the **Batalha Primeira Era** project. Built upon the `Character` base class, it extends the combat system with unique mechanics and significantly increases the encounter's difficulty.
 
 | Mechanic / System | Description |
 | :--- | :--- |
-| **I. Targetable Body Parts**<br>`GetTargetTableParts` | The class overrides the base target table system to introduce localized damage mechanics. In addition to standard character hitboxes, players can strategically target a Dragon's specific vulnerabilities:<br>• **`BodyPart.Wings`**: Allows players to target the wings (potentially affecting mobility or airborne actions).<br>• **`BodyPart.Belly`**: Exposes the traditional weak point of ancient drakes for high-risk, high-reward tactical strikes. |
-| **II. Boss Scaling**<br>`LifeMultiplier` | To reflect its status as an apex predator of the First Age, the class features a dynamic health-scaling method. |
+| **I. Selectable Weak Points**<br>`GetTargetTableParts` | This implementation replaces the default targeting behavior by supporting localized damage zones. Beyond the standard hit locations, players may attack specific areas of the Dragon's body:<br>• **`BodyPart.Wings`**: Targets the wings, potentially limiting flight capabilities and aerial maneuvers.<br>• **`BodyPart.Belly`**: Represents the Dragon's classic vulnerable area, rewarding players willing to take greater risks in close combat. |
+| **II. Health Scaling**<br>`LifeMultiplier` | To emphasize the Dragon's role as one of the dominant creatures of the First Age, the class includes a method that greatly expands its maximum survivability during battle. |
 
 > [!NOTE]
-> **Multiplication Factor:** Instantly scales the Dragon's current health pool by **10x** (`lifePoints *= 10`). This ensures a massive, multi-phased challenge during encounter transitions.
+> **Health Multiplier:** Multiplies the Dragon's current health by **10** (`lifePoints *= 10`), creating a longer and more demanding encounter, particularly during boss phase transitions.
 
  ## 🗂️ Heroes
 
