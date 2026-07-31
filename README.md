@@ -1,6 +1,6 @@
-🛡️ Technical Summary: The Base Class
+## 🛡️ Technical Overview: The Foundation Class
 
-The `Character` class is an abstract class that serves as the definitive blueprint for creating any hero, minion, or creature within the *Batalha Primeira Era* universe. It implements the `IDamageable` interface, ensuring that any derived character inherently acquires the mechanical capability to receive damage and seamlessly interact within the combat flow.
+The `Character` class is an abstract base type that establishes the core structure for every hero, enemy, and creature in the *Batalha Primeira Era* universe. By implementing the `IDamageable` interface, all classes derived from it automatically gain the ability to receive damage and participate consistently in the game's combat system.
 
 ---
 
