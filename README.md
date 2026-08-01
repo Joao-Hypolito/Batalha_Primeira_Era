@@ -6,15 +6,16 @@ The `Character` class is an abstract base type that establishes the core structu
 
 ## 🗂️ Core Architecture & Structural Management
 
-### 1. Attribute Management and Data Encapsulation
+### 1. Attribute Control and Encapsulation
 
-This class centralizes the management of the character's internal state and gameplay attributes. The `Math.Clamp` method is applied to guarantee that every attribute remains within the valid interval (0–99), protecting the system from invalid assignments and out-of-range values.
+This component manages the character's core data and gameplay-related properties. Using the `Math.Clamp` method, every attribute is constrained to a fixed range (0–99), ensuring data consistency and preventing invalid or out-of-bounds values.
 
 | Attribute | Description |
 | :--- | :--- |
-| **Health & Armor** | Controls the character's survivability, current health value, and mitigation of incoming physical attacks. |
-| **Base Attributes** | Strength, Agility, and Knowledge, serving as the fundamental statistics that influence gameplay behavior. |
-| **Spectral Perception** | Exclusive attribute responsible for determining whether the character is capable of sensing and interacting with the Spectral Realm. The verification is performed through a dedicated boolean function. |
+| **Health & Defense** | Represents the character's durability, current health status, and resistance against physical damage. |
+| **Core Statistics** | Strength, Agility, and Knowledge, which define the character's primary gameplay capabilities and overall performance. |
+| **Spectral Insight** | Specialized attribute used to determine if the character can perceive and engage with the Spectral Realm. This condition is validated through a dedicated boolean method. |
+
 
 > [!NOTE]
 > **Spectral Requirement:** Access to the Spectral Realm becomes available automatically whenever the `SpectralInsight` value is **50 or higher**.
