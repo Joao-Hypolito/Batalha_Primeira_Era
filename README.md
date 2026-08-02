@@ -103,14 +103,17 @@ This method handles the Lamenter's unique death-defiance logic. When incoming da
 
 ## 🗂️ Inventory
 
-### Independent Inventory Manager
+### Standalone Inventory System
 
-The `Inventory` class was designed to fully separate item handling and equipment responsibilities from the core character implementation. Rather than storing inventory-related data directly inside the `Character` class, this component serves as an autonomous manager dedicated to asset organization.
+The `Inventory` class is responsible for isolating inventory operations and equipment management from the primary character logic. Instead of embedding these responsibilities into the `Character` class, it functions as a separate module dedicated to organizing and maintaining the player's items.
 
-| System Feature | Responsibility |
+| System Feature | Purpose |
 | :--- | :--- |
-| **Data Encapsulation** | Maintains strict inventory boundaries, enforces storage capacity limits, and guarantees consistent item lifecycle management. |
-| **Runtime State Monitoring** | Continuously manages item durability, equipment assignment, and the current state of usable objects. |
+| **Encapsulated Storage** | Preserves inventory integrity by enforcing capacity restrictions, validating stored items, and maintaining controlled access to inventory data. |
+| **Item State Management** | Keeps track of equipment assignments, item durability, and the current condition of every usable object throughout gameplay. |
+
+> [!IMPORTANT]
+> **Architectural Benefit:** Separating inventory responsibilities from the character model improves maintainability, reduces class coupling, and keeps the core gameplay loop free from unnecessary inventory-related complexity.
 
 > [!IMPORTANT]
 > **Architectural Benefit:** This design promotes efficient interaction with the primary game loop while keeping character instances lightweight and preventing unnecessary data accumulation within the core classes.
