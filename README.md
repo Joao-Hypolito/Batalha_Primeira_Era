@@ -116,5 +116,5 @@ The `Inventory` class is responsible for isolating inventory operations and equi
 > **Architectural Benefit:** Separating inventory responsibilities from the character model improves maintainability, reduces class coupling, and keeps the core gameplay loop free from unnecessary inventory-related complexity.
 
 > [!IMPORTANT]
-> **Architectural Benefit:** This design promotes efficient interaction with the primary game loop while keeping character instances lightweight and preventing unnecessary data accumulation within the core classes.
-
+> > [!IMPORTANT]
+> **Architectural Benefit:** This architecture isolates inventory management from the core character logic, reducing object complexity, improving maintainability, and ensuring efficient integration with the main gameplay loop.
