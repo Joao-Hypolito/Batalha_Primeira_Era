@@ -103,9 +103,9 @@ This method handles the Lamenter's unique death-defiance logic. When incoming da
 
 ## 🗂️ Inventory
 
-### Standalone Inventory System
+### Dedicated Inventory Module
 
-The `Inventory` class is responsible for isolating inventory operations and equipment management from the primary character logic. Instead of embedding these responsibilities into the `Character` class, it functions as a separate module dedicated to organizing and maintaining the player's items.
+The `Inventory` class separates item storage and equipment-related functionality from the main character system. Rather than placing these responsibilities directly within the `Character` class, it operates as an independent component focused on managing, organizing, and maintaining the player's inventory.
 
 | System Feature | Purpose |
 | :--- | :--- |
