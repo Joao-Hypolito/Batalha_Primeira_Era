@@ -63,6 +63,29 @@ namespace Batalha_Primeira_Era.Items.Weapons
             }
         }
 
+        public float CalculateAttributeBonus(int attributeValue, float scaling)
+        {
+            float effectiveValue = 0f;
+
+            if (attributeValue <= 30)
+            {
+                // 100% de rendimento até o 30º ponto
+                effectiveValue = attributeValue;
+            }
+            else if (attributeValue <= 60)
+            {
+                // Rendimento cai para 50% entre o ponto 31 e 60
+                effectiveValue = 30 + ((attributeValue - 30) * 0.5f);
+            }
+            else
+            {
+                // Rendimento cai para 15% acima do ponto 60 (Hard Cap)
+                effectiveValue = 30 + (30 * 0.5f) + ((attributeValue - 60) * 0.15f);
+            }
+
+            return effectiveValue * scaling;
+        }
+
     }
 }
 

@@ -25,9 +25,9 @@ namespace Batalha_Primeira_Era.Items.Weapons
             Use();
 
             // Agora a fórmula usa os atributos do personagem MULTIPLICADOS pelo escalonamento único DESSE escudo
-            float dexBonus = wielder.Dexterity * DexScaling;
-            float strBonus = wielder.Strength * StrScaling;
-            float knowBonus = wielder.Knowledge * KnowScaling;
+            float dexBonus = CalculateAttributeBonus(wielder.Dexterity, DexScaling);
+            float strBonus = CalculateAttributeBonus(wielder.Strength, StrScaling);
+            float knowBonus = CalculateAttributeBonus(wielder.Knowledge, KnowScaling);
 
             return CurrentDamage + dexBonus + strBonus + knowBonus;
         }

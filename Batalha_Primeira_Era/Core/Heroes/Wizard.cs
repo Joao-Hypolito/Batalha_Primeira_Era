@@ -13,5 +13,28 @@ namespace Batalha_Primeira_Era.Core.Heroes
         {
         }
 
+        public override void ReceiveDamage(float damage, BodyPart hitPart)
+        {
+            base.ReceiveDamage(damage, hitPart);
+        }
+        public float CastArcaneBlast(Character target)
+        {
+            
+            if (this.SpectralInsight >= 10) 
+            {
+                this.SpectralInsight -= 10;
+
+                
+                float magicDamage = 15f + (this.Knowledge * 1.8f);
+
+                
+                float finalDamage = magicDamage - (target.Armor * 0.3f); 
+
+                target.lifePoint -= finalDamage;
+                return finalDamage;
+            }
+            return 0f; 
+        }
+
     }
 }

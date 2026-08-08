@@ -27,8 +27,7 @@ namespace Batalha_Primeira_Era.Core.Heroes
             }
             else
             {
-
-                    base.ReceiveDamage(damage, hitPart);              
+                base.ReceiveDamage(damage, hitPart);              
             }
         }
     }

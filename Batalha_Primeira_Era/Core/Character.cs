@@ -71,7 +71,7 @@ namespace Batalha_Primeira_Era.Core
     public abstract class Character : IDamageable
     {
         public string Name { get; set; }
-        public float lifePoint { get; protected set; }
+        public float lifePoint { get; set; }
 
         // Garante que os pontos de discernimento tenham o limite de 0 a 99
         private int _spectralInsight = 0;
