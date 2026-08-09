@@ -21,19 +21,18 @@ namespace Batalha_Primeira_Era.Core.Heroes
         {
             
             if (this.SpectralInsight >= 10) 
-            {
-                this.SpectralInsight -= 10;
+                {
+                    this.SpectralInsight -= 10;
 
-                
-                float magicDamage = 15f + (this.Knowledge * 1.8f);
+                    float magicDamage = 15f + (this.Knowledge * 1.8f);
+        
+                    float finalDamage = MathF.Max(1f, magicDamage - (target.Armor * 0.3f));
 
-                
-                float finalDamage = magicDamage - (target.Armor * 0.3f); 
+                    target.ReceiveDamage(finalDamage, BodyPart.Torso); 
 
-                target.lifePoint -= finalDamage;
-                return finalDamage;
-            }
-            return 0f; 
+                    return finalDamage;
+                }    
+            return 0f;
         }
 
     }
