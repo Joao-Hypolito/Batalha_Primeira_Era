@@ -88,15 +88,16 @@ This class extends ``Character``. Its primary mechanics center on brief invincib
 ### `Imortality`
 This method manages the Lamenter's signature death-prevention mechanics. When fatal or near-fatal damage is received, rather than dying, it triggers a 5-second duration. During this window, a boolean flag is set to negate all incoming damage, boost attack stats (triggering a frenzied state), and initiate a timer. After the countdown ends, the method automatically executes the character's death sequence.
 
- ## 🗂️ Weapons
+## 🗂️ Weapons
 
-### Weaponry Logic & Attribute Scaling
-This method handles the Lamenter's unique death-defiance logic. When incoming damage reduces its health to or near zero, instead of dying, this method triggers a 5-second window. During this period, it activates a boolean flag to ignore all further damage, boosts its attack parameters (entering a frenzy state), and starts a countdown. Once the timer expires, the method forces the character into the death sequence.
+### Weapon Mechanics & Attribute-Based Scaling
+
+This system implements the Lamenter's special survival mechanic. When incoming damage would reduce its health to a critical level, the character avoids immediate death and enters a temporary 5-second survival state. During this interval, a boolean flag prevents additional damage, while its offensive attributes are increased, putting the character into a frenzy state. After the countdown reaches zero, the system proceeds with the character's death sequence.
 
 | Method / System | Description |
 | :--- | :--- |
-| **`CalculateDamage`** | Computes the final strike value and dynamically manages weapon degradation during combat sequences. |
-| **Attribute Scaling** | Incorporates a multi-attribute scaling matrix (**Strength**, **Dexterity**, and **Knowledge**) to multiply the wielder's core stats by unique weapon scaling factors. |
+| **`CalculateDamage`** | Determines the resulting damage dealt by an attack while also handling weapon durability loss throughout combat. |
+| **Attribute Scaling** | Uses a multi-stat scaling system involving **Strength**, **Dexterity**, and **Knowledge**, applying each wielder attribute according to the individual scaling coefficients defined by the weapon. |
 
 > [!NOTE]
 > **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
