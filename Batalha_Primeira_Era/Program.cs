@@ -69,6 +69,7 @@ namespace Batalha_Primeira_Era
     
             frodo.TakeAction(glaurung);
             legolas.TakeAction(glaurung);
+            galadriel.CastArcaneBlast(glaurung);
             legolas.TakeAction(lamenter);
             
             Console.WriteLine($"\nLich's current damage before the Goblin dies: {sulyvahn.CurrentDamage}");
