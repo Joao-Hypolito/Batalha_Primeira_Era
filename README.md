@@ -97,7 +97,18 @@ This system implements the Lamenter's special survival mechanic. When incoming d
 | Method / System | Description |
 | :--- | :--- |
 | **`CalculateDamage`** | Determines the resulting damage dealt by an attack while also handling weapon durability loss throughout combat. |
-| **Attribute Scaling** | Uses a multi-stat scaling system involving **Strength**, **Dexterity**, and **Knowledge**, applying each wielder attribute according to the individual scaling coefficients defined by the weapon. |
+| **`Attribute Scaling`** | Uses a multi-stat scaling system involving **Strength**, **Dexterity**, and **Knowledge**, applying each wielder attribute according to the individual scaling coefficients defined by the weapon. |
+
+### `CalculateAttributeBonus`
+
+Applies soft caps through a diminishing returns curve to promote balanced stat distribution:
+
+| Attribute Points | Percentage | Diminishing returns |
+| :--- | :--- | :--- | 
+| **1–30 points:** | 100% attribute scaling efficiency | Full growth |
+| **31–60 points:** | 50% attribute scaling efficiency | Moderate soft cap |
+| **61+ points:** | 15% attribute scaling efficiency | Heavy soft cap |
+
 
 > [!NOTE]
 > **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
