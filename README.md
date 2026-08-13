@@ -22,13 +22,14 @@ This component manages the character's core data and gameplay-related properties
 
 ---
 
-### 2. Combat Systems & Core Methods
+### 2. Combat Operations & Main Methods
 
-- **`TakeAction(IDamageable target)`**
-  Controls the complete attack procedure. It handles target selection, determines the selected hit area, calculates the resulting damage, and checks the weapon's current durability. When durability falls below defined limits, additional penalties are applied, decreasing the weapon's overall damage effectiveness.
+* **`TakeAction(IDamageable target)`**
+  Manages the character's attack sequence from start to finish. It selects the intended target, identifies the body area being attacked, determines the final damage value, and verifies the weapon's durability condition. If the weapon reaches critical durability levels, damage penalties are introduced, lowering its combat efficiency.
 
-- **`ReceiveDamage(float damage, BodyPart hitPart)`**
-  Manages damage received by the character. The incoming value is adjusted according to the body part struck, then reduced through an armor-based calculation using 50% of the character's armor rating. The resulting value is clamped to prevent negative damage before being deducted from the character's health.
+* **`ReceiveDamage(float damage, BodyPart hitPart)`**
+  Handles damage inflicted upon the character. The initial damage is modified based on the affected body part and subsequently mitigated through an armor calculation that considers 50% of the character's armor value. Before applying the result to the health pool, the system ensures that the calculated damage cannot fall below zero.
+
 
  ## 🗂️ Bosses
 
