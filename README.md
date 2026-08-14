@@ -53,12 +53,13 @@ This function receives a `Character` instance (used as the target) and inspects 
 
 ### 2. Dragon
 
-The `Dragon` class represents one of the game's most formidable boss entities in the **Batalha Primeira Era** project. Built upon the `Character` base class, it extends the combat system with unique mechanics and significantly increases the encounter's difficulty.
+The `Dragon` class defines a high-level boss encounter within the **Batalha Primeira Era** project. As a specialized extension of the `Character` base class, it introduces additional combat features designed to make the encounter more challenging and strategically demanding.
 
 | Mechanic / System | Description |
 | :--- | :--- |
-| **I. Selectable Weak Points**<br>`GetTargetTableParts` | This implementation replaces the default targeting behavior by supporting localized damage zones. Beyond the standard hit locations, players may attack specific areas of the Dragon's body:<br>• **`BodyPart.Wings`**: Targets the wings, potentially limiting flight capabilities and aerial maneuvers.<br>• **`BodyPart.Belly`**: Represents the Dragon's classic vulnerable area, rewarding players willing to take greater risks in close combat. |
-| **II. Health Scaling**<br>`LifeMultiplier` | To emphasize the Dragon's role as one of the dominant creatures of the First Age, the class includes a method that greatly expands its maximum survivability during battle. |
+| **I. Targetable Vulnerabilities**<br>`GetTargetTableParts` | The class modifies the standard targeting mechanism to support specific damage zones. In addition to normal hit areas, players can focus their attacks on particular parts of the Dragon:<br>• **`BodyPart.Wings`**: Allows the wings to be targeted, which may interfere with the creature's ability to fly or perform aerial maneuvers.<br>• **`BodyPart.Belly`**: Functions as a vulnerable region of the Dragon, providing an opportunity for powerful attacks at greater tactical risk. |
+| **II. Vitality Scaling**<br>`LifeMultiplier`               | To reinforce the Dragon's position as a powerful creature from the First Age, the class provides a scaling mechanism that substantially increases its survivability throughout the encounter.                                                                                                                                                                                                                                                                                                |
+
 
 > [!NOTE]
 > **Health Multiplier:** Multiplies the Dragon's current health by **10** (`lifePoints *= 10`), creating a longer and more demanding encounter, particularly during boss phase transitions.
