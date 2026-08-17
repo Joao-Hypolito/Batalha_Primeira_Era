@@ -1,4 +1,5 @@
-﻿using Batalha_Primeira_Era.Items.Inventory;
+﻿using Batalha_Primeira_Era.Core.Behaviors;
+using Batalha_Primeira_Era.Items.Inventory;
 using Batalha_Primeira_Era.Items.Weapons;
 using System;
 using System.Collections.Generic;
@@ -16,50 +17,6 @@ namespace Batalha_Primeira_Era.Core
         void ReceiveDamage(float damage, Character.BodyPart randomPart); // Tornar tangivel a dano qualquer tipo de alvo
         string Name { get; } // Para poder usar o nome no console
     }
-    public interface ITheft
-    {
-        void Theft(); // Habilida de Furto
-    }
-    public interface IAgile
-    {
-        void Dodge(); // Habilidade de Esquiva
-    }
-
-    public interface Imagic
-    {
-        void CastSpell(); // Habilidade Mágica
-    }
-
-    public interface IRanged<T> where T : Weapon
-    {
-        T equippedBow { get; set; }
-    }
-
-    // Interface para combate corpo a corpo (Ladinos, Guerreiros)
-    public interface IDagger<T> where T : Weapon
-    {
-        T equippedDagger { get; set; } // Ou equippedSword, etc.
-    }
-
-    public interface IGreat_Sword<T> where T : Weapon
-    {
-        T equippedGreat_Sword { get; set; } // Ou equippedSword, etc.
-    }
-
-    public interface IGreat_Axe<T> where T : Weapon
-    {
-        T equippedGreat_Axe { get; set; } // Ou equippedSword, etc.
-    }
-
-    public interface ISword<T> where T : Weapon
-    {
-        T equippedSword { get; set; } // Ou equippedSword, etc.
-    }
-
-    public interface IShield<T> where T : Weapon
-    {
-        T equippedShield { get; set; } // Ou equippedSword, etc.
-    }
 
     // Interface de discernimento para chefes
     public interface IDiscernment
@@ -67,9 +24,16 @@ namespace Batalha_Primeira_Era.Core
         void Wraiths();
     }
 
-
-    public abstract class Character : IDamageable
+    public interface IAbility
     {
+        string Name { get; }
+        void Execute(Character caster, IDamageable target);
+    }
+
+    public class Character : IDamageable
+    {
+        public HeroClass ClassDefinition { get; set; }
+
         public string Name { get; set; }
         public float lifePoint { get; set; }
 
@@ -109,9 +73,12 @@ namespace Batalha_Primeira_Era.Core
         public Weapon EquippedWeapon { get; set; }
         public Inventory EquippedInventory { get; set; }
 
-        public Character(string name, float life, int insight, float defense, int strength, int dexterity, int knowledge, Inventory item) 
+        public List<IAbility> Abilities { get; set; } = new List<IAbility>();
+
+        public Character(string name, HeroClass heroClass, float life, int insight, float defense, int strength, int dexterity, int knowledge, Inventory item) 
         {
             Name = name;
+            ClassDefinition = heroClass; // <-- Faltava essa linha pra salvar a classe do herói!
             lifePoint = life;
             SpectralInsight = insight;
             Armor = defense;
@@ -126,6 +93,19 @@ namespace Batalha_Primeira_Era.Core
         public bool CanPerceiveWraiths()
         {
             return SpectralInsight >= 50;
+        }
+
+        public bool EquipWeapon(Weapon weapon)
+        {
+            if (ClassDefinition != null && !ClassDefinition.AllowedWeapons.Contains(weapon.Type))
+            {
+                Console.WriteLine($"{Name} ({ClassDefinition.Name}) não pode equipar {weapon.Name}!");
+                return false;
+            }
+
+            EquippedWeapon = weapon;
+            Console.WriteLine($"{Name} equipou {weapon.Name} com sucesso!");
+            return true;
         }
 
         //Uma lista de palavras que valem números, util para aliviar a memória e impede erros
@@ -147,6 +127,18 @@ namespace Batalha_Primeira_Era.Core
         /// <param Idamageable="target">O alvo que receberá o ataque.</param>
         public void TakeAction(IDamageable target)
         {
+            if (this.lifePoint <= 0)
+            {
+                Console.WriteLine($"{Name} está morto e não pode atacar!");
+                return;
+            }   
+
+            if (target is Character tChar && tChar.lifePoint <= 0)
+            {
+                Console.WriteLine($"{tChar.Name} já está morto! {Name} não precisa atacá-lo.");
+                return;
+            }
+
             Random rng = new Random();
 
 
@@ -196,30 +188,59 @@ namespace Batalha_Primeira_Era.Core
         /// Processa o dano recebido pelo personagem, aplicando reduções baseadas na armadura.
         /// </summary>
         /// <param BodyPart="hitPart">O personagem que receberá o ataque.</param>
+        
+        public Imortality ImmortalityBehavior { get; set; }
+        public Horde MyHorde { get; set; }
         public virtual void ReceiveDamage(float damage, BodyPart hitPart)
         {
-            //Adiciona um multiplicador com base em qual parte do corpo for atingida
+            if (lifePoint <= 0) return;
+
+            // 1. Checa se JÁ ESTÁ invulnerável
+            if (ImmortalityBehavior != null && ImmortalityBehavior.IsInvulnerable)
+            {
+                Console.WriteLine($"{Name} está INVULNERÁVEL e não recebeu dano!");
+                return;
+            }
+
             float multiplier = GetDamageMultiplier(hitPart);
-            //Aplica a "Redução de Dano", a armadura do personagem anula o dano na proporção de 50% do valor de armadura
             float rawDamage = damage * multiplier;
-
             float armorConstant = 100f;
-
-            float damageFactor = armorConstant / (armorConstant + (this.Armor/ 2));
-
+            float damageFactor = armorConstant / (armorConstant + (this.Armor / 2));
             float damageAfterDefense = rawDamage * damageFactor;
 
-            //Garante que o dano nunca seja negativo, sem isso, se a sua armadura fosse muito alta, você seria curado ao levar um golpe
             if (damageAfterDefense < 0) damageAfterDefense = 0;
 
             Console.WriteLine($"{Name}'s initial lifespan was {lifePoint}");
 
-            //A execucao final atualiza o atributo de vida do Personagem com o valor mitigado
+            // 2. Calcula qual seria a vida pós-dano
+            float expectedLife = lifePoint - damageAfterDefense;
 
-            lifePoint -= damageAfterDefense;
+            // 3. SE O DANO FOR FATAL (ou deixar abaixo de 1%), aciona o Imortality ANTES de zerar a vida!
+            if (ImmortalityBehavior != null && expectedLife <= 1f)
+            {
+                // Reduz a vida para o limiar de 1% em vez de matar
+                lifePoint = 1f; 
+                Console.WriteLine($"{Name} tomou um golpe fatal, mas sua resiliência o manteve em {lifePoint} HP!");
+        
+                // Ativa a imunidade por 5 segundos
+                ImmortalityBehavior.CheckAndTrigger(seconds: 5);
+                return;
+            }
+
+            // Se não for o caso da imortalidade, reduz a vida normalmente
+            lifePoint = expectedLife;
             if (lifePoint < 0) lifePoint = 0;
+
             Console.WriteLine($"{Name} took {damageAfterDefense:F1} damage.");
             Console.WriteLine($"{Name}'s final lifespan is {lifePoint}");
+
+            // 4. Se morreu e pertencia a uma horda, remove da horda!
+            if (lifePoint <= 0 && MyHorde != null)
+            {
+                Console.WriteLine($"{Name} foi derrotado!");
+                MyHorde.RemoveMember(this); // Notifica o AbsorbSoul automaticamente![cite: 5, 6]
+                MyHorde = null;
+            }
         }
 
         //uso de private é para garantir:
