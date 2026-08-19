@@ -1,134 +1,72 @@
-## 🛡️ Technical Overview: The Foundation Class
+# ⚔️ Batalha Primeira Era — Core Architecture
 
-The `Character` class is an abstract base type that establishes the core structure for every hero, enemy, and creature in the *Batalha Primeira Era* universe. By implementing the `IDamageable` interface, all classes derived from it automatically gain the ability to receive damage and participate consistently in the game's combat system.
+## 🛡️ Technical Overview: Composition over Inheritance
 
----
-
-## 🗂️ Core Architecture & Structural Management
-
-### 1. Attribute Control and Encapsulation
-
-This component manages the character's core data and gameplay-related properties. Using the `Math.Clamp` method, every attribute is constrained to a fixed range (0–99), ensuring data consistency and preventing invalid or out-of-bounds values.
-
-| Attribute | Description |
-| :--- | :--- |
-| **Health & Defense** | Represents the character's durability, current health status, and resistance against physical damage. |
-| **Core Statistics** | Strength, Agility, and Knowledge, which define the character's primary gameplay capabilities and overall performance. |
-| **Spectral Insight** | Specialized attribute used to determine if the character can perceive and engage with the Spectral Realm. This condition is validated through a dedicated boolean method. |
-
-
-> [!NOTE]
-> **Spectral Requirement:** Access to the Spectral Realm becomes available automatically whenever the `SpectralInsight` value is **50 or higher**.
+The core architecture of *Batalha Primeira Era* centers around a unified **`Character`** model powered by **Composition and Component-based Design**. Rather than relying on rigid class inheritance for every hero or monster type, characters are configured dynamically through data definitions (`HeroClass`), interface contracts (`IDamageable`, `IAbility`), and modular behaviors (`Immortality`, `Horde`).
 
 ---
 
-### 2. Combat Operations & Main Methods
+## 🗂️ Core Architecture & Structural Components
+
+### 1. Unified Character Model & Encapsulation
+
+The `Character` class implements `IDamageable` and acts as the primary entity for players, bosses, and common enemies. Using `Math.Clamp`, character statistics are constrained to safe operational limits (0–99), ensuring data integrity across combat calculations.
+
+| Attribute | Range / Type | Description |
+| :--- | :--- | :--- |
+| **`lifePoint`** | `float` | Current vitality status. Triggers death or survival behaviors when it reaches zero. |
+| **`Armor`** | `float` | Base physical defense used to mitigate incoming damage. |
+| **`Strength` / `Dexterity` / `Knowledge`** | `int` (0–99) | Core attributes that scale weapon damage and determine physical capabilities. |
+| **`SpectralInsight`** | `int` (0–99) | Specialized attribute determining interaction with the Spectral Realm (active at **50+**). |
+| **`ClassDefinition`** | `HeroClass` | Defines class identity and weapon restrictions dynamically. |
+
+---
+
+### 2. Dynamic Class System (`HeroClass`)
+
+Instead of creating sub-classes for every archetype, class roles and rules are encapsulated within the `HeroClass` object. 
+
+* **Weapon Restrictions:** The `EquipWeapon(Weapon weapon)` method validates whether the target weapon type (`WeaponType`) is listed in the character's `ClassDefinition.AllowedWeapons`.
+
+---
+
+### 3. Combat Mechanics & Targeting
 
 * **`TakeAction(IDamageable target)`**
-  Manages the character's attack sequence from start to finish. It selects the intended target, identifies the body area being attacked, determines the final damage value, and verifies the weapon's durability condition. If the weapon reaches critical durability levels, damage penalties are introduced, lowering its combat efficiency.
+  Executes an attack sequence. It verifies vitality states, evaluates equipped weapon durability, rolls a targeted body part via `GetTargetTableParts()`, and delegates damage calculation to the weapon or calculates raw unarmed damage based on `Strength`.
 
 * **`ReceiveDamage(float damage, BodyPart hitPart)`**
-  Handles damage inflicted upon the character. The initial damage is modified based on the affected body part and subsequently mitigated through an armor calculation that considers 50% of the character's armor value. Before applying the result to the health pool, the system ensures that the calculated damage cannot fall below zero.
-
-
- ## 🗂️ Bosses
-
-### 1. Spectrum
-
-Derived from the `Character` base class, this boss embodies a unique enemy archetype. Its signature ability is to psychologically overwhelm the player whenever the character lacks sufficient mental resilience before the confrontation.
-
-### `DefendAgainstAttacker`
-
-This function receives a `Character` instance (used as the target) and inspects its `SpectralInsight` value.
-
-| Condition | Result |
-| :--- | :--- |
-| **Spectral Insight below 40** | The boss destroys the protagonist's mental stability, immediately reducing the durability of the equipped weapon to zero, making it unusable for the rest of the encounter. |
-| **Spectral Insight of 40 or greater** | The protagonist withstands the psychic attack and becomes fully protected against this particular durability-degrading effect. |
-
-> [!IMPORTANT]
-> **Returns:** `bool` (specifies whether the defensive validation succeeded).
+  Applies precise damage reduction using a non-linear armor formula:
+  $$\text{Damage Factor} = \frac{100}{100 + \frac{\text{Armor}}{2}}$$
+  It also checks for critical body-part multipliers (e.g., `Belly` x3.0, `Head` x2.0) and evaluates active survival behaviors before applying fatal damage.
 
 ---
 
-### 2. Dragon
+## 🧩 Modular Behaviors & Mechanics
 
-The `Dragon` class defines a high-level boss encounter within the **Batalha Primeira Era** project. As a specialized extension of the `Character` base class, it introduces additional combat features designed to make the encounter more challenging and strategically demanding.
+Instead of overriding base methods, special entity behaviors are attached to `Character` instances as modular components:
 
-| Mechanic / System | Description |
-| :--- | :--- |
-| **I. Targetable Vulnerabilities**<br>`GetTargetTableParts` | The class modifies the standard targeting mechanism to support specific damage zones. In addition to normal hit areas, players can focus their attacks on particular parts of the Dragon:<br>• **`BodyPart.Wings`**: Allows the wings to be targeted, which may interfere with the creature's ability to fly or perform aerial maneuvers.<br>• **`BodyPart.Belly`**: Functions as a vulnerable region of the Dragon, providing an opportunity for powerful attacks at greater tactical risk. |
-| **II. Vitality Scaling**<br>`LifeMultiplier`               | To reinforce the Dragon's position as a powerful creature from the First Age, the class provides a scaling mechanism that substantially increases its survivability throughout the encounter.                                                                                                                                                                                                                                                                                                |
+### 1. Immortality Behavior (`ImmortalityBehavior`)
+* **Survival Threshold:** When a character receives fatal damage (`expectedLife <= 1%`), the `ImmortalityBehavior` intervenes, setting health to `1 HP` and triggering a temporary invulnerability window (e.g., 5 seconds).
 
+### 2. Horde Integration (`MyHorde`)
+* **Dynamic Group Management:** Characters assigned to a `Horde` instance automatically notify the group upon defeat (`lifePoint <= 0`), triggering group mechanics such as soul absorption or morale reduction.
 
-> [!NOTE]
-> **Health Multiplier:** Multiplies the Dragon's current health by **10** (`lifePoints *= 10`), creating a longer and more demanding encounter, particularly during boss phase transitions.
+### 3. Targeted Body Parts (`GetTargetTableParts`)
+* Polymorphic method that can be customized for specific body structures (e.g., adding `Wings` or `Belly` for large creatures or dragons).
 
- ## 🗂️ Heroes
+---
 
-### OOP Hybrid Framework
-Hero classes derive directly from `Character`, establishing the foundational player-controlled archetypes within Batalha Primeira Era. This subclass design showcases a solid application of Object-Oriented Programming (OOP) tenets in C# to drive dynamic gameplay mechanics.
+## 🗂️ Weapons & Inventory
 
-| Principle | Core Implementation |
-| :--- | :--- |
-| **Inheritance** | Extends the abstract base `Character` to automatically absorb global attributes and core combat contracts. |
-| **Interfaces with Generics** | Enforces specialized, type-safe behaviors tailored to specific hero attributes and class roles. |
-| **Polymorphism** | Achieved through **Constructor Overloading** and method overrides, allowing distinct customization for each hero type. |
+### Weapon Scaling System
+Weapons calculate final output dynamically using the wielder's attributes (`Strength`, `Dexterity`, `Knowledge`) alongside diminishing returns soft caps:
 
- ## 🗂️ Enemies
+| Stat Range | Scaling Efficiency | Description |
+| :--- | :--- | :--- |
+| **1–30 points** | **100%** | Full efficiency scaling |
+| **31–60 points** | **50%** | Moderate soft cap |
+| **61+ points** | **15%** | Heavy soft cap |
 
-### 1. Goblin 
-This class inherits from `Character` and represents a pricipal enemy archetype within the game. It features a  dynamic **Horde mechanic**, where Goblins again bonus damage depending on how many other Goblins are 
-present in the battle (the larger the horde, the stronger they get).
-
-### `ReceiveDamage(float damage, BodyPart hitPart)`
-This method overrides the base damage logic to calculate the final damage taken based on the specific `BodyPart` hit. Additionally, it tracks the `_myHorde` attribute: if the Goblin's life points drop to zero or below, it is automatically removed from the horde, dynamically lowering the group's overall morale and strength.
-
-### 2. Lamenters
-This class extends ``Character``. Its primary mechanics center on brief invincibility and an enraged state activated once its health falls under a designated threshold.
-
-### `Imortality`
-This method manages the Lamenter's signature death-prevention mechanics. When fatal or near-fatal damage is received, rather than dying, it triggers a 5-second duration. During this window, a boolean flag is set to negate all incoming damage, boost attack stats (triggering a frenzied state), and initiate a timer. After the countdown ends, the method automatically executes the character's death sequence.
-
-## 🗂️ Weapons
-
-### Weapon Mechanics & Attribute-Based Scaling
-
-This system implements the Lamenter's special survival mechanic. When incoming damage would reduce its health to a critical level, the character avoids immediate death and enters a temporary 5-second survival state. During this interval, a boolean flag prevents additional damage, while its offensive attributes are increased, putting the character into a frenzy state. After the countdown reaches zero, the system proceeds with the character's death sequence.
-
-| Method / System | Description |
-| :--- | :--- |
-| **`CalculateDamage`** | Determines the resulting damage dealt by an attack while also handling weapon durability loss throughout combat. |
-| **`Attribute Scaling`** | Uses a multi-stat scaling system involving **Strength**, **Dexterity**, and **Knowledge**, applying each wielder attribute according to the individual scaling coefficients defined by the weapon. |
-
-### `CalculateAttributeBonus`
-
-Applies soft caps through a diminishing returns curve to promote balanced stat distribution:
-
-| Attribute Points | Percentage | Diminishing returns |
-| :--- | :--- | :--- | 
-| **1–30 points:** | 100% attribute scaling efficiency | Full growth |
-| **31–60 points:** | 50% attribute scaling efficiency | Moderate soft cap |
-| **61+ points:** | 15% attribute scaling efficiency | Heavy soft cap |
-
-
-> [!NOTE]
-> **Dynamic Maintainability:** This centralized mathematical logic ensures that combat calculations remain consistent, balanced, and easily scalable as new hero classes, requirement thresholds, or specialized equipment types are introduced.
-
-## 🗂️ Inventory
-
-### Dedicated Inventory Module
-
-The `Inventory` class separates item storage and equipment-related functionality from the main character system. Rather than placing these responsibilities directly within the `Character` class, it operates as an independent component focused on managing, organizing, and maintaining the player's inventory.
-
-| System Feature | Purpose |
-| :--- | :--- |
-| **Encapsulated Storage** | Preserves inventory integrity by enforcing capacity restrictions, validating stored items, and maintaining controlled access to inventory data. |
-| **Item State Management** | Keeps track of equipment assignments, item durability, and the current condition of every usable object throughout gameplay. |
-
-> [!IMPORTANT]
-> **Architectural Benefit:** Separating inventory responsibilities from the character model improves maintainability, reduces class coupling, and keeps the core gameplay loop free from unnecessary inventory-related complexity.
-
-> [!IMPORTANT]
-> > [!IMPORTANT]
-> **Architectural Benefit:** This architecture isolates inventory management from the core character logic, reducing object complexity, improving maintainability, and ensuring efficient integration with the main gameplay loop.
+### Decoupled Inventory
+The `Inventory` class encapsulates item management, durability tracking, and capacity validation, keeping the `Character` class clean and focused purely on combat logic.
