@@ -8,17 +8,18 @@ The core architecture of *Batalha Primeira Era* centers around a unified **`Char
 
 ## 🗂️ Core Architecture & Structural Components
 
-### 1. Unified Character Model & Encapsulation
+### 1. Centralized Character Model & Data Encapsulation
 
-The `Character` class implements `IDamageable` and acts as the primary entity for players, bosses, and common enemies. Using `Math.Clamp`, character statistics are constrained to safe operational limits (0–99), ensuring data integrity across combat calculations.
+The `Character` class implements `IDamageable` and serves as the main entity for player characters, bosses, and standard enemies. Through the use of `Math.Clamp`, character attributes are restricted to a controlled range (0–99), preserving data consistency and preventing invalid values from affecting combat calculations.
 
 | Attribute | Range / Type | Description |
 | :--- | :--- | :--- |
-| **`lifePoint`** | `float` | Current vitality status. Triggers death or survival behaviors when it reaches zero. |
-| **`Armor`** | `float` | Base physical defense used to mitigate incoming damage. |
-| **`Strength` / `Dexterity` / `Knowledge`** | `int` (0–99) | Core attributes that scale weapon damage and determine physical capabilities. |
-| **`SpectralInsight`** | `int` (0–99) | Specialized attribute determining interaction with the Spectral Realm (active at **50+**). |
-| **`ClassDefinition`** | `HeroClass` | Defines class identity and weapon restrictions dynamically. |
+| **`lifePoint`**                            | `float`      | Represents the character's current health state and determines when death or survival mechanics are activated.             |
+| **`Armor`**                                | `float`      | Provides the character's fundamental physical protection and reduces incoming damage.                                      |
+| **`Strength` / `Dexterity` / `Knowledge`** | `int` (0–99) | Primary statistics that influence weapon damage scaling and define the character's physical capabilities.                  |
+| **`SpectralInsight`**                      | `int` (0–99) | Specialized statistic that controls access to the Spectral Realm, becoming active when its value reaches **50 or higher**. |
+| **`ClassDefinition`**                      | `HeroClass`  | Determines the character's class identity and dynamically controls applicable weapon restrictions.                         |
+
 
 ---
 
