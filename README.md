@@ -43,18 +43,22 @@ Instead of creating sub-classes for every archetype, class roles and rules are e
 
 ---
 
-## 🧩 Modular Behaviors & Mechanics
+## 🧩 Modular Behaviors & Gameplay Mechanics
 
-Instead of overriding base methods, special entity behaviors are attached to `Character` instances as modular components:
+Rather than modifying or overriding the core methods of the base class, specialized behaviors are provided to `Character` instances through independent and reusable components.
 
 ### 1. Immortality Behavior (`ImmortalityBehavior`)
-* **Survival Threshold:** When a character receives fatal damage (`expectedLife <= 1%`), the `ImmortalityBehavior` intervenes, setting health to `1 HP` and triggering a temporary invulnerability window (e.g., 5 seconds).
+
+* **Survival Trigger:** When incoming damage would reduce a character to a critical health state (`expectedLife <= 1%`), the `ImmortalityBehavior` activates, preserving the character at `1 HP` and granting a temporary period of immunity to further damage (e.g., 5 seconds).
 
 ### 2. Horde Integration (`MyHorde`)
-* **Dynamic Group Management:** Characters assigned to a `Horde` instance automatically notify the group upon defeat (`lifePoint <= 0`), triggering group mechanics such as soul absorption or morale reduction.
 
-### 3. Targeted Body Parts (`GetTargetTableParts`)
-* Polymorphic method that can be customized for specific body structures (e.g., adding `Wings` or `Belly` for large creatures or dragons).
+* **Automatic Group Coordination:** Characters associated with a `Horde` instance automatically communicate their defeat (`lifePoint <= 0`) to the group, allowing collective mechanics such as soul absorption or morale penalties to be activated.
+
+### 3. Body-Part Targeting (`GetTargetTableParts`)
+
+* Provides a polymorphic targeting mechanism that can be extended to support unique anatomical structures, such as `Wings` or `Belly` when dealing with large creatures and dragons.
+
 
 ---
 
