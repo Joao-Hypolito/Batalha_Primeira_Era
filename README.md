@@ -25,7 +25,7 @@ The `Character` class implements `IDamageable` and serves as the main entity for
 
 ### 2. Dynamic Class System (`HeroClass`)
 
-Instead of creating sub-classes for every archetype, class roles and rules are encapsulated within the `HeroClass` object. 
+Instead of hardcoding the user roles, class roles and rules are encapsulated within the `HeroClass` object. 
 
 * **Weapon Restrictions:** The `EquipWeapon(Weapon weapon)` method validates whether the target weapon type (`WeaponType`) is listed in the character's `ClassDefinition.AllowedWeapons`.
 
