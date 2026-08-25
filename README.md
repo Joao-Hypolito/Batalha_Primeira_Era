@@ -31,15 +31,19 @@ Instead of hardcoding the user roles, class roles and rules are encapsulated wit
 
 ---
 
-### 3. Combat Mechanics & Targeting
+### 3. Combat Operations & Target Selection
 
-* **`TakeAction(IDamageable target)`**
-  Executes an attack sequence. It verifies vitality states, evaluates equipped weapon durability, rolls a targeted body part via `GetTargetTableParts()`, and delegates damage calculation to the weapon or calculates raw unarmed damage based on `Strength`.
+**`TakeAction(IDamageable target)`**
 
-* **`ReceiveDamage(float damage, BodyPart hitPart)`**
-  Applies precise damage reduction using a non-linear armor formula:
-  $$\text{Damage Factor} = \frac{100}{100 + \frac{\text{Armor}}{2}}$$
-  It also checks for critical body-part multipliers (e.g., `Belly` x3.0, `Head` x2.0) and evaluates active survival behaviors before applying fatal damage.
+  Manages the character's offensive workflow. The method checks the character's current health state, validates the durability of the equipped weapon, selects a specific body part through `GetTargetTableParts()`, and forwards the attack to the weapon's damage calculation system. When no weapon is equipped, it calculates base unarmed damage using the character's `Strength` attribute.
+
+**`ReceiveDamage(float damage, BodyPart hitPart)`**
+
+  Handles incoming attacks by applying a non-linear armor mitigation formula:
+
+  $$\text{Damage Multiplier} = \frac{100}{100 + \frac{\text{Armor}}{2}}$$
+
+  The method additionally applies special damage modifiers based on the affected body part, such as `Belly` x3.0 and `Head` x2.0. Before applying lethal damage, it also verifies whether any active survival mechanics can prevent the character from being defeated.
 
 ---
 
