@@ -46,22 +46,21 @@ Instead of hardcoding the user roles, class roles and rules are encapsulated wit
   The method additionally applies special damage modifiers based on the affected body part, such as `Belly` x3.0 and `Head` x2.0. Before applying lethal damage, it also verifies whether any active survival mechanics can prevent the character from being defeated.
 
 ---
-
 ## 🧩 Modular Behaviors & Gameplay Mechanics
 
-Rather than modifying or overriding the core methods of the base class, specialized behaviors are provided to `Character` instances through independent and reusable components.
+Instead of changing or overriding the main methods inherited from the base class, specific behaviors are assigned to `Character` objects using independent, reusable components.
 
 ### 1. Immortality Behavior (`ImmortalityBehavior`)
 
-* **Survival Trigger:** When incoming damage would reduce a character to a critical health state (`expectedLife <= 1%`), the `ImmortalityBehavior` activates, preserving the character at `1 HP` and granting a temporary period of immunity to further damage (e.g., 5 seconds).
+* **Survival Trigger:** If incoming damage is expected to bring a character's health down to a critical level (`expectedLife <= 1%`), the `ImmortalityBehavior` is triggered. It keeps the character alive with `1 HP` and provides temporary protection against additional damage (for example, 5 seconds).
 
 ### 2. Horde Integration (`MyHorde`)
 
-* **Automatic Group Coordination:** Characters associated with a `Horde` instance automatically communicate their defeat (`lifePoint <= 0`) to the group, allowing collective mechanics such as soul absorption or morale penalties to be activated.
+* **Automatic Group Coordination:** Characters belonging to a `Horde` instance automatically notify the group when they are defeated (`lifePoint <= 0`). This makes it possible to trigger shared mechanics, such as soul absorption or morale penalties.
 
 ### 3. Body-Part Targeting (`GetTargetTableParts`)
 
-* Provides a polymorphic targeting mechanism that can be extended to support unique anatomical structures, such as `Wings` or `Belly` when dealing with large creatures and dragons.
+* Enables a polymorphic targeting system that can be expanded to handle special anatomical components, including structures like `Wings` or `Belly` for large creatures and dragons.
 
 
 ---
