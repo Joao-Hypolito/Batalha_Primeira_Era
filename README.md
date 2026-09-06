@@ -2,7 +2,7 @@
 
 ## 🛡️ Technical Overview: Composition over Inheritance
 
-The core architecture of *Batalha Primeira Era* centers around a unified **`Character`** model powered by **Composition and Component-based Design**. Rather than relying on rigid class inheritance for every hero or monster type, characters are configured dynamically through data definitions (`HeroClass`), interface contracts (`IDamageable`, `IAbility`), and modular behaviors (`Immortality`, `Horde`).
+The core architecture of *Batalha Primeira Era* is built around a unified **Character** model supported by **Composition and Component-based Design**. Instead of depending on rigid inheritance structures for each hero or monster category, characters are dynamically configured through data definitions (`HeroClass`), interface contracts (`IDamageable`, `IAbility`), and reusable modular behaviors (`Immortality`, `Horde`).
 
 ---
 
