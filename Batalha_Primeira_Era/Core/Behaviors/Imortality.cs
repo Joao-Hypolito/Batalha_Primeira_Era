@@ -24,7 +24,7 @@ namespace Batalha_Primeira_Era.Core.Behaviors
         public void CheckAndTrigger(int seconds)
         {
             // Checa o 1% usando a vida do Character
-            if (_character.lifePoint <= (_maxLife * 0.01f) && !_alreadyTriggeredInvulnerability && _character.lifePoint > 0)
+            if (_character._lifePoint <= (_maxLife * 0.01f) && !_alreadyTriggeredInvulnerability && _character._lifePoint > 0)
             {
                 TriggerInvulnerability(seconds);
             }
@@ -35,18 +35,18 @@ namespace Batalha_Primeira_Era.Core.Behaviors
             _isInvulnerable = true;
             _alreadyTriggeredInvulnerability = true;
             
-            if (_character.lifePoint < (_maxLife * 0.01f))
+            if (_character._lifePoint < (_maxLife * 0.01f))
             {
                 float roundedLife = (float)Math.Round(_maxLife * 0.01f);
                 _character.SetLifePoint(roundedLife);
             }
 
-            Console.WriteLine($"{_character.Name} ativou determinação dos Lamenters! Invulnerável por {seconds} segundos.");
+            Console.WriteLine($"{_character._Name} ativou determinação dos Lamenters! Invulnerável por {seconds} segundos.");
 
             await Task.Delay(seconds * 1000);
 
             _isInvulnerable = false;
-            Console.WriteLine($"{_character.Name} não está mais invulnerável!");
+            Console.WriteLine($"{_character._Name} não está mais invulnerável!");
         }
     }
 }

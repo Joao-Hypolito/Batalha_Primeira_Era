@@ -52,8 +52,8 @@ namespace Batalha_Primeira_Era.Items.Inventory
             Weapon weaponToEquip = _slots[slotIndex];
 
             // Directly Change the character's state 
-            character.EquippedWeapon = weaponToEquip;
-            Console.WriteLine($"\n[EQUIP] {character.Name} successfully equipped: {weaponToEquip.Name}!");
+            character._EquippedWeapon = weaponToEquip;
+            Console.WriteLine($"\n[EQUIP] {character._Name} successfully equipped: {weaponToEquip.Name}!");
         }
     }
 }

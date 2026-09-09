@@ -23,18 +23,64 @@ namespace Batalha_Primeira_Era
             Weapon elvenBow = new Weapon("Arco Élfico", WeaponType.Bow, baseDamage: 40f, reqStr: 5, reqDex: 20, reqKnw: 0, dexScale: 1.0f);
             Weapon morgul = new Weapon("Lâmina de Morgul", WeaponType.GreatSword, baseDamage: 50f, reqStr: 20, reqDex: 10, reqKnw: 10, strScale: 1.0f);
 
-            // 3. PERSONAGENS (HERÓIS)
-            Character frodo = new Character("Frodo", rogueClass, life: 100f, insight: 60, defense: 10f, strength: 15, dexterity: 30, knowledge: 10, new Inventory(5));
-            Character legolas = new Character("Legolas", archerClass, life: 120f, insight: 50, defense: 15f, strength: 20, dexterity: 50, knowledge: 15, new Inventory(5));
+            // 3. PERSONAGENS (HERÓIS) - Usando a chamada fluida estilo Builder
+            Character frodo = new Character("Frodo", rogueClass)
+                .WithLife(100f)
+                .WithSpectral(60)
+                .WithArmor(10f)
+                .WithStrenght(15)
+                .WithDextery(30)
+                .WithKnowledge(10)
+                .WithEquippedInventory(new Inventory(5));
+
+            Character legolas = new Character("Legolas", archerClass)
+                .WithLife(120f)
+                .WithSpectral(50)
+                .WithArmor(15f)
+                .WithStrenght(20)
+                .WithDextery(50)
+                .WithKnowledge(15)
+                .WithEquippedInventory(new Inventory(5));
 
             frodo.EquipWeapon(sting);
             legolas.EquipWeapon(elvenBow);
 
             // 4. PERSONAGENS (INIMIGOS E CHEFES)
-            Character goblin1 = new Character("Goblin Slasher", monsterClass, life: 30f, insight: 0, defense: 0f, strength: 10, dexterity: 15, knowledge: 0, new Inventory(5));
-            Character goblin2 = new Character("Goblin Archer", monsterClass, life: 30f, insight: 0, defense: 0f, strength: 10, dexterity: 15, knowledge: 0, new Inventory(5));
-            Character sulyvahn = new Character("Pontiff Sulyvahn (Lich)", monsterClass, life: 150f, insight: 80, defense: 30f, strength: 25, dexterity: 20, knowledge: 70, new Inventory(5));
-            Character lamenter = new Character("Lamenter", monsterClass, life: 100f, insight: 50, defense: 20f, strength: 30, dexterity: 20, knowledge: 10, new Inventory(5));
+            Character goblin1 = new Character("Goblin Slasher", monsterClass)
+                .WithLife(30f)
+                .WithSpectral(0)
+                .WithArmor(0f)
+                .WithStrenght(10)
+                .WithDextery(15)
+                .WithKnowledge(0)
+                .WithEquippedInventory(new Inventory(5));
+
+            Character goblin2 = new Character("Goblin Archer", monsterClass)
+                .WithLife(30f)
+                .WithSpectral(0)
+                .WithArmor(0f)
+                .WithStrenght(10)
+                .WithDextery(15)
+                .WithKnowledge(0)
+                .WithEquippedInventory(new Inventory(5));
+
+            Character sulyvahn = new Character("Pontiff Sulyvahn (Lich)", monsterClass)
+                .WithLife(150f)
+                .WithSpectral(80)
+                .WithArmor(30f)
+                .WithStrenght(25)
+                .WithDextery(20)
+                .WithKnowledge(70)
+                .WithEquippedInventory(new Inventory(5));
+
+            Character lamenter = new Character("Lamenter", monsterClass)
+                .WithLife(100f)
+                .WithSpectral(50)
+                .WithArmor(20f)
+                .WithStrenght(30)
+                .WithDextery(20)
+                .WithKnowledge(10)
+                .WithEquippedInventory(new Inventory(5));
 
             sulyvahn.EquipWeapon(morgul);
 
@@ -71,10 +117,10 @@ namespace Batalha_Primeira_Era
             Console.WriteLine($"\nDano do Lich APÓS a morte do Goblin: {lichSoulAbsorb.CurrentDamage}");
 
             Console.WriteLine("\n--- Frodo ataca o Lamenter até quase matar ---");
-            lamenter.lifePoint = 1f; // Forçando vida baixa pra testar imortalidade
+            lamenter._lifePoint = 1f; // Forçando vida baixa pra testar imortalidade com o atributo atualizado (_lifePoint)
             frodo.TakeAction(lamenter); // Vai ativar o Imortality.cs!
 
-            Console.WriteLine("\n--- Frodo tenta atacar o Lamenter MENTRAS ESTÁ INVULNERÁVEL ---");
+            Console.WriteLine("\n--- Frodo tenta atacar o Lamenter ENQUANTO ESTÁ INVULNERÁVEL ---");
             frodo.TakeAction(lamenter); // Ataque é bloqueado!
 
             Console.WriteLine("\n=== FIM DO TESTE DE BEHAVIORS ===");

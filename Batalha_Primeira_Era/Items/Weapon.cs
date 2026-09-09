@@ -55,18 +55,18 @@ namespace Batalha_Primeira_Era.Items.Weapons
             if (IsBroken) return BaseDamage * 0.2f; // Dano mínimo se quebrada
 
             // Verifica se o personagem atende aos requisitos
-            if (wielder.Strength < RequiredStrength || 
-                wielder.Dexterity < RequiredDexterity || 
-                wielder.Knowledge < RequiredKnowledge)
+            if (wielder._Strength < RequiredStrength || 
+                wielder._Dexterity < RequiredDexterity || 
+                wielder._Knowledge < RequiredKnowledge)
             {
-                Console.WriteLine($"{wielder.Name} não tem os atributos necessários para usar {Name} perfeitamente!");
+                Console.WriteLine($"{wielder._Name} não tem os atributos necessários para usar {Name} perfeitamente!");
                 return BaseDamage * 0.5f; // Penalidade por não ter os requisitos
             }
 
             // Usa sua excelente lógica de rendimento de atributos (Hard Cap)
-            float bonusStr = CalculateAttributeBonus(wielder.Strength, StrengthScaling);
-            float bonusDex = CalculateAttributeBonus(wielder.Dexterity, DexterityScaling);
-            float bonusKnw = CalculateAttributeBonus(wielder.Knowledge, KnowledgeScaling);
+            float bonusStr = CalculateAttributeBonus(wielder._Strength, StrengthScaling);
+            float bonusDex = CalculateAttributeBonus(wielder._Dexterity, DexterityScaling);
+            float bonusKnw = CalculateAttributeBonus(wielder._Knowledge, KnowledgeScaling);
 
             // Reduz durabilidade ao usar
             Use();

@@ -38,18 +38,18 @@ namespace Batalha_Primeira_Era.Core.Behaviors
                 {
                     if (count >= 5) // Giant Pack: Total courage!
                     {
-                        enemy.Armor = 40f;    // More armor because they are tightly packed
-                        enemy.Strength = 30;  // Massive damage bonus
+                        enemy._Armor = 40f;    // More armor because they are tightly packed
+                        enemy._Strength = 30;  // Massive damage bonus
                     }
                     else if (count >= 2) // Small group: Gaining confidence
                     {
-                        enemy.Armor = 20f;
-                        enemy.Strength = 20;
+                        enemy._Armor = 20f;
+                        enemy._Strength = 20;
                     }
                     else // Only 1 left: The coward alone!
                     {
-                        enemy.Armor = 5f;    // Ridiculous defense due to fear
-                        enemy.Strength = 5;   // Weak attack because they want to flee
+                        enemy._Armor = 5f;    // Ridiculous defense due to fear
+                        enemy._Strength = 5;   // Weak attack because they want to flee
                     }
                 }
             }
