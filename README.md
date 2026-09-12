@@ -33,9 +33,9 @@ var hero = new Character("Aragorn", warriorClass)
 
 ### 2. Dynamic Class System (`HeroClass`)
 
-Instead of hardcoding the user roles, class roles and rules are encapsulated within the `HeroClass` object. 
+Encapsulates class rules and restrictions into data-driven definitions, avoiding hardcoded user roles.
 
-* **Weapon Restrictions:** The `EquipWeapon(Weapon weapon)` method validates whether the target weapon type (`WeaponType`) is listed in the character's `ClassDefinition.AllowedWeapons`.
+* **Weapon Restrictions:** Validates if a target `WeaponType` is present in the character's `HeroClass.AllowedWeapons` list before equipping it via `EquipWeapon(Weapon weapon)`.
 
 ---
 
