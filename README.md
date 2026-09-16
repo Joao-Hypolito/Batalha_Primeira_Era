@@ -56,19 +56,19 @@ Encapsulates class rules and restrictions into data-driven definitions, avoiding
 ---
 ## 🧩 Modular Behaviors & Gameplay Mechanics
 
-Instead of changing or overriding the main methods inherited from the base class, specific behaviors are assigned to `Character` objects using independent, reusable components.
+Rather than modifying or overriding the main methods inherited from the base class, specific behaviors are attached to `Character` objects through independent and reusable components.
 
 ### 1. Immortality Behavior (`ImmortalityBehavior`)
 
-* **Survival Trigger:** If incoming damage is expected to bring a character's health down to a critical level (`expectedLife <= 1%`), the `ImmortalityBehavior` is triggered. It keeps the character alive with `1 HP` and provides temporary protection against additional damage (for example, 5 seconds).
+* **Survival Trigger:** When incoming damage is expected to reduce a character's health to a critical level (`expectedLife <= 1%`), the `ImmortalityBehavior` is activated. It keeps the character alive with `1 HP` and grants temporary protection against further damage (for example, 5 seconds).
 
 ### 2. Horde Integration (`MyHorde`)
 
-* **Automatic Group Coordination:** Characters belonging to a `Horde` instance automatically notify the group when they are defeated (`lifePoint <= 0`). This makes it possible to trigger shared mechanics, such as soul absorption or morale penalties.
+* **Automatic Group Coordination:** Characters associated with a `Horde` instance automatically notify the group when they are defeated (`lifePoint <= 0`). This allows shared mechanics to be triggered, such as soul absorption or morale penalties.
 
 ### 3. Body-Part Targeting (`GetTargetTableParts`)
 
-* Enables a polymorphic targeting system that can be expanded to handle special anatomical components, including structures like `Wings` or `Belly` for large creatures and dragons.
+* Provides a polymorphic targeting system that can be extended to support special anatomical components, including structures such as `Wings` or `Belly` for large creatures and dragons.
 
 
 ---
