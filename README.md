@@ -17,16 +17,17 @@ To eliminate constructor complexity and handle optional attributes gracefully, `
 #### 🔨 Character Construction via Builder (Fluent Method Chaining)
 
 ```csharp
-// Example of fluent character creation using the Builder pattern
-var hero = new Character("Aragorn", warriorClass)
+// Fluent character instantiation using the Builder pattern
+var hero = new CharacterBuilder("Aragorn", warriorClass)
     .WithLife(100f)
     .WithArmor(50f)
-    .WithStrenght(80)
-    .WithDextery(65)
+    .WithStrength(80)
+    .WithDexterity(65)
     .WithKnowledge(40)
     .WithSpectral(55)
     .WithEquippedWeapon(andurilSword)
-    .WithAbilities(powerStrike, shieldBash);
+    .WithAbilities(powerStrike, shieldBash)
+    .Build();
 ```    
 
 ---
