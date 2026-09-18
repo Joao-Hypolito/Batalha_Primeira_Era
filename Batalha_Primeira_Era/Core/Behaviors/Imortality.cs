@@ -30,23 +30,35 @@ namespace Batalha_Primeira_Era.Core.Behaviors
             }
         }
 
-        private async void TriggerInvulnerability(int seconds)
+        private async Task TriggerInvulnerability(int durationSeconds, CancellationToken cancellationToken = default)
         {
             _isInvulnerable = true;
             _alreadyTriggeredInvulnerability = true;
-            
-            if (_character._lifePoint < (_maxLife * 0.01f))
+
+            // Garante que o HP mínimo seja ao menos 1% da vida máxima (sem morrer)
+            float minLifeThreshold = _maxLife * 0.01f;
+            if (_character._lifePoint < minLifeThreshold)
             {
-                float roundedLife = (float)Math.Round(_maxLife * 0.01f);
+                float roundedLife = MathF.Round(minLifeThreshold);
                 _character.SetLifePoint(roundedLife);
             }
 
-            Console.WriteLine($"{_character._Name} ativou determinação dos Lamenters! Invulnerável por {seconds} segundos.");
+            Console.WriteLine($"{_character._Name} ativou determinação dos Lamenters! Invulnerável por {durationSeconds} segundos.");
 
-            await Task.Delay(seconds * 1000);
-
-            _isInvulnerable = false;
-            Console.WriteLine($"{_character._Name} não está mais invulnerável!");
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(durationSeconds), cancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+                // Trata o cancelamento graciosamente se a cena/entidade for destruída antes do tempo
+                return;
+            }
+            finally
+            {
+                _isInvulnerable = false;
+                Console.WriteLine($"{_character._Name} não está mais invulnerável!");
+            }
         }
     }
 }
