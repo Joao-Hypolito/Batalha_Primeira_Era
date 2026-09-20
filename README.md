@@ -65,7 +65,11 @@ Rather than modifying or overriding the main methods inherited from the base cla
 
 ### 2. Horde Integration (`MyHorde`)
 
-* **Automatic Group Coordination:** Characters associated with a `Horde` instance automatically notify the group when they are defeated (`lifePoint <= 0`). This allows shared mechanics to be triggered, such as soul absorption or morale penalties.
+* **Dynamic Scaling & Group Mechanics:** Characters linked to a `Horde` instance dynamically adapt their attributes based on group size:
+  * **Large Packs (5+):** Gain massive defense (`_Armor`), damage (`_Strength`), and enhanced combat precision (`_Dexterity`). Crucially, they channel the Spectral Realm (`_SpectralInsight >= 50`), allowing them to perceive and engage wraith-form players.
+  * **Small Groups (2-4):** Receive moderate combat bonuses to sustain pressure.
+  * **Last Survivor:** Experiences total morale collapse, lowering armor/strength while boosting `_Dexterity` (evasive panic) and triggering desperation resilience via `ImmortalityBehavior`.
+* **Automatic Lifecycle Management:** When defeated (`_lifePoint <= 0`), members notify `MyHorde` to automatically purge themselves from the group, triggering soul-absorption routines or adjusting active horde buffs for remaining allies.
 
 ### 3. Body-Part Targeting (`GetTargetTableParts`)
 
