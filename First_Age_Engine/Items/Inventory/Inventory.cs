@@ -1,10 +1,10 @@
-﻿using Batalha_Primeira_Era.Core;
-using Batalha_Primeira_Era.Items.Weapons;
+﻿using First_Age_Engine.Core;
+using First_Age_Engine.Items.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Items.Inventory
+namespace First_Age_Engine
 {
     public class Inventory
     {

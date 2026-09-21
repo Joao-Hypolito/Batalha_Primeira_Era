@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.5.11723.231 stable
+VisualStudioVersion = 18.5.11723.231
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Batalha_Primeira_Era", "Batalha_Primeira_Era.csproj", "{A7437149-8ECB-2BA6-9580-3647761A1BE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "First_Age_Engine", "First_Age_Engine.csproj", "{A7437149-8ECB-2BA6-9580-3647761A1BE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

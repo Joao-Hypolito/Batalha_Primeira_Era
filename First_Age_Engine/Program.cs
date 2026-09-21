@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Batalha_Primeira_Era.Core;
-using Batalha_Primeira_Era.Core.Behaviors;
-using Batalha_Primeira_Era.Items.Inventory;
-using Batalha_Primeira_Era.Items.Weapons;
+using First_Age_Engine.Core;
+using First_Age_Engine.Behaviors;
+using First_Age_Engine.Core;
+using First_Age_Engine.Items.Weapons;
 
-namespace Batalha_Primeira_Era
+namespace First_Age_Engine
 {
     internal class Program
     {
@@ -14,9 +14,9 @@ namespace Batalha_Primeira_Era
             Console.WriteLine("=== BATALHA DA PRIMEIRA ERA (SISTEMA MODULAR) ===\n");
 
             // 1. CLASSES DE RPG
-            HeroClass rogueClass = new HeroClass("Ladino", new List<WeaponType> { WeaponType.Dagger, WeaponType.Bow });
-            HeroClass archerClass = new HeroClass("Arqueiro", new List<WeaponType> { WeaponType.Bow, WeaponType.Dagger });
-            HeroClass monsterClass = new HeroClass("Monstro", new List<WeaponType> { WeaponType.Sword, WeaponType.GreatSword, WeaponType.Dagger });
+            CharacterClass rogueClass = new CharacterClass("Ladino", new List<WeaponType> { WeaponType.Dagger, WeaponType.Bow });
+            CharacterClass archerClass = new CharacterClass("Arqueiro", new List<WeaponType> { WeaponType.Bow, WeaponType.Dagger });
+            CharacterClass monsterClass = new CharacterClass("Monstro", new List<WeaponType> { WeaponType.Sword, WeaponType.GreatSword, WeaponType.Dagger });
 
             // 2. ARMAS
             Weapon sting = new Weapon("Sting", WeaponType.Dagger, baseDamage: 30f, reqStr: 10, reqDex: 10, reqKnw: 0, dexScale: 0.8f);

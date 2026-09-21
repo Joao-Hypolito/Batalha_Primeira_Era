@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Core
+namespace First_Age_Engine.Core
 {
     public enum WeaponType { Sword, GreatSword, GreatAxe, Dagger, Bow, Staff, Shield }
 
-    public class HeroClass
+    public class CharacterClass
     {
         public string Name { get; set; }
         public List<WeaponType> AllowedWeapons { get; set; } = new List<WeaponType>();
 
-        public HeroClass(string name, List<WeaponType> allowedWeapons)
+        public CharacterClass(string name, List<WeaponType> allowedWeapons)
         {
             Name = name;
             AllowedWeapons = allowedWeapons;

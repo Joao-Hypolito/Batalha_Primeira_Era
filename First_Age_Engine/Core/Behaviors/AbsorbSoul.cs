@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Core.Behaviors
+namespace First_Age_Engine.Behaviors
 {
     public class AbsorbSoul
     {

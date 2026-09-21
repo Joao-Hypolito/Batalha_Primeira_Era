@@ -1,7 +1,8 @@
 ﻿using System;
+using First_Age_Engine.Core;
 using System.Threading.Tasks;
 
-namespace Batalha_Primeira_Era.Core.Behaviors
+namespace First_Age_Engine.Behaviors
 {
     public class Imortality
     {

@@ -1,8 +1,8 @@
-# ⚔️ Batalha Primeira Era — Core Architecture
+# ⚔️ First_Age_Engine — Core Architecture
 
 ## 🛡️ Technical Overview: Composition over Inheritance & Creational Patterns
 
-The core architecture of *Batalha Primeira Era* is built around a unified **Character** model supported by **Composition, Component-based Design, and Creational Design Patterns (Builder)**. Instead of depending on rigid inheritance structures or monster constructors with excessive parameter overloads, characters are dynamically and fluently constructed through data definitions (`HeroClass`), interface contracts (`IDamageable`, `IAbility`), modular behaviors (`Immortality`, `Horde`), and a **Fluent Builder API**.
+The core architecture of *First_Age_Engine* is built around a unified **Character** model supported by **Composition, Component-based Design, and Creational Design Patterns (Builder)**. Instead of depending on rigid inheritance structures or monster constructors with excessive parameter overloads, characters are dynamically and fluently constructed through data definitions (`HeroClass`), interface contracts (`IDamageable`, `IAbility`), modular behaviors (`Immortality`, `Horde`), and a **Fluent Builder API**.
 
 ---
 

@@ -1,13 +1,13 @@
-﻿using Batalha_Primeira_Era.Core.Behaviors;
-using Batalha_Primeira_Era.Items.Inventory;
-using Batalha_Primeira_Era.Items.Weapons;
+﻿using First_Age_Engine.Behaviors;
+using First_Age_Engine.Core;
+using First_Age_Engine.Items.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 
-namespace Batalha_Primeira_Era.Core
+namespace First_Age_Engine.Core
 {
     // ============================================================
     // CONTRATOS (Interfaces): O que o personagem PODE FAZER
@@ -32,7 +32,7 @@ namespace Batalha_Primeira_Era.Core
 
     public class Character : IDamageable
     {
-        public HeroClass _class;
+        public CharacterClass _class;
 
         public string _Name { get; set; }
         public float _lifePoint { get; set; }
@@ -75,7 +75,7 @@ namespace Batalha_Primeira_Era.Core
 
         public List<IAbility> _Abilities { get; set; } = new List<IAbility>();
 
-        public Character(string name, HeroClass classDefinition) 
+        public Character(string name, CharacterClass classDefinition) 
         {
             _Name = name;
             _class = classDefinition;

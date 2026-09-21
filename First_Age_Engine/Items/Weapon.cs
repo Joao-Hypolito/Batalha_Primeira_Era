@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Batalha_Primeira_Era.Core;
-using static Batalha_Primeira_Era.Core.Character;
+using First_Age_Engine.Core;
+using static First_Age_Engine.Core.Character;
 
-namespace Batalha_Primeira_Era.Items.Weapons
+namespace First_Age_Engine.Items.Weapons
 {
     public class Weapon
     {
